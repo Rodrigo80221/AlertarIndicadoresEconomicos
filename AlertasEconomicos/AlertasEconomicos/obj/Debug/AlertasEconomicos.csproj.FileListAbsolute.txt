@@ -7,3 +7,4 @@ C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomic
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.pdb
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.FrmAlertas.resources
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.csprojResolveAssemblyReference.cache
+C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\bin\Debug\AlertasEconomicos.exe.config
