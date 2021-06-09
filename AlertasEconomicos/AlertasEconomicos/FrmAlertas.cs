@@ -69,7 +69,7 @@ namespace AlertasEconomicos
 
                             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
-                            System.Media.SystemSounds.Beep.Play();
+                            System.Media.SystemSounds.Asterisk.Play();
 
                             return;
 
