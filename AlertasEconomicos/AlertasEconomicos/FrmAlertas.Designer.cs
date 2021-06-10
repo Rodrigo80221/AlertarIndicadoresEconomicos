@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlertas));
             this.tmrHorario = new System.Windows.Forms.Timer(this.components);
-            this.lblHora = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +43,8 @@
             this.mtbIndicador2 = new System.Windows.Forms.MaskedTextBox();
             this.mtbIndicdor3 = new System.Windows.Forms.MaskedTextBox();
             this.mtbIndicador4 = new System.Windows.Forms.MaskedTextBox();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.wbCotacoes = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
             // tmrHorario
@@ -51,19 +52,6 @@
             this.tmrHorario.Enabled = true;
             this.tmrHorario.Interval = 1000;
             this.tmrHorario.Tick += new System.EventHandler(this.tmrHorario_Tick);
-            // 
-            // lblHora
-            // 
-            this.lblHora.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblHora.AutoSize = true;
-            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(666, 16);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(80, 24);
-            this.lblHora.TabIndex = 7;
-            this.lblHora.Text = "12:00:00";
-            this.lblHora.Click += new System.EventHandler(this.label1_Click);
             // 
             // label1
             // 
@@ -185,12 +173,33 @@
             this.mtbIndicador4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtbIndicador4.ValidatingType = typeof(System.DateTime);
             // 
+            // lblHora
+            // 
+            this.lblHora.AutoSize = true;
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.Color.White;
+            this.lblHora.Location = new System.Drawing.Point(647, 21);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(79, 20);
+            this.lblHora.TabIndex = 25;
+            this.lblHora.Text = "00:00:00";
+            // 
+            // wbCotacoes
+            // 
+            this.wbCotacoes.Location = new System.Drawing.Point(732, 5);
+            this.wbCotacoes.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbCotacoes.Name = "wbCotacoes";
+            this.wbCotacoes.Size = new System.Drawing.Size(434, 243);
+            this.wbCotacoes.TabIndex = 26;
+            // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(765, 65);
+            this.ClientSize = new System.Drawing.Size(1207, 323);
+            this.Controls.Add(this.wbCotacoes);
+            this.Controls.Add(this.lblHora);
             this.Controls.Add(this.mtbIndicador4);
             this.Controls.Add(this.mtbIndicdor3);
             this.Controls.Add(this.mtbIndicador2);
@@ -203,13 +212,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblHora);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAlertas";
             this.Text = "Alertas de indicadores";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAlertas_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResizeEnd += new System.EventHandler(this.FrmAlertas_ResizeEnd);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +226,6 @@
 
         #endregion
         private System.Windows.Forms.Timer tmrHorario;
-        private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -230,6 +238,8 @@
         private System.Windows.Forms.MaskedTextBox mtbIndicador2;
         private System.Windows.Forms.MaskedTextBox mtbIndicdor3;
         private System.Windows.Forms.MaskedTextBox mtbIndicador4;
+        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.WebBrowser wbCotacoes;
     }
 }
 

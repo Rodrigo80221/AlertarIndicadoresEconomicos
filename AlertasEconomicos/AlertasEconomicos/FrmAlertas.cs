@@ -45,51 +45,58 @@ namespace AlertasEconomicos
 
             this.Location = posicao;
 
+            wbCotacoes.Width = this.Width - 760;
+
+
+            this.BackColor = System.Drawing.Color.DimGray;
+
+            wbCotacoes.Navigate("https://www.google.com/finance/");
+
         }
 
         private void tmrHorario_Tick(object sender, EventArgs e)
         {
 
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+
             var hora = new DateTime();
             hora = DateTime.Now;
 
+            var emAlerta = false;
+
             foreach (Control c in this.Controls)
-            {              
+            {
+      
                 if (c is MaskedTextBox)
                 {
                     try
                     {
                         if ((DateTime.Parse(c.Text) >= hora.AddMinutes(-2)) && (DateTime.Parse(c.Text) <= hora.AddMinutes(2)))
-                        {
-                            if (this.BackColor == System.Drawing.Color.DimGray)
-                                this.BackColor = System.Drawing.Color.Red;
-
-                            else if (this.BackColor == System.Drawing.Color.Red)
-                                this.BackColor = System.Drawing.Color.DimGray;
-
-                            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
-
-                            System.Media.SystemSounds.Asterisk.Play();
-
-                            return;
-
-                        }
-                        else
-                        {
-                            this.BackColor = System.Drawing.Color.DimGray;
-                        }
-
+                            emAlerta = true;
                     }
                     catch (Exception)
-                    {
-
-
-                    }
+                    { }
 
                 }
+
             }
 
-            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            if (emAlerta)
+                {
+                    var corFundo = this.BackColor;
+
+                    if (corFundo == System.Drawing.Color.DimGray)
+                        this.BackColor = System.Drawing.Color.Red;
+
+                    else if (corFundo == System.Drawing.Color.Red)
+                        this.BackColor = System.Drawing.Color.DimGray;
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                }
+                else
+                    this.BackColor = System.Drawing.Color.DimGray;
+
         }
 
         private void txtHoraBovespa_TextChanged(object sender, EventArgs e)
@@ -113,6 +120,11 @@ namespace AlertasEconomicos
             configFile.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
+        }
+
+        private void FrmAlertas_ResizeEnd(object sender, EventArgs e)
+        {
+            wbCotacoes.Width = this.Width - 760;
         }
     }
 }
