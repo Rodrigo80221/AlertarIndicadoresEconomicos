@@ -44,7 +44,12 @@
             this.mtbIndicdor3 = new System.Windows.Forms.MaskedTextBox();
             this.mtbIndicador4 = new System.Windows.Forms.MaskedTextBox();
             this.lblHora = new System.Windows.Forms.Label();
-            this.wbCotacoes = new System.Windows.Forms.WebBrowser();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblSP500Fut_var = new System.Windows.Forms.Label();
+            this.lblSP500Fut_pts = new System.Windows.Forms.Label();
+            this.trmCotacoes = new System.Windows.Forms.Timer(this.components);
+            this.lblLog = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tmrHorario
@@ -57,7 +62,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 5);
+            this.label1.Location = new System.Drawing.Point(12, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 8;
@@ -67,7 +72,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(116, 5);
+            this.label2.Location = new System.Drawing.Point(116, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 9;
@@ -77,7 +82,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(221, 5);
+            this.label3.Location = new System.Drawing.Point(221, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 10;
@@ -87,7 +92,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(327, 5);
+            this.label4.Location = new System.Drawing.Point(327, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 11;
@@ -97,7 +102,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(433, 5);
+            this.label5.Location = new System.Drawing.Point(433, 21);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 12;
@@ -107,7 +112,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(539, 5);
+            this.label6.Location = new System.Drawing.Point(539, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
             this.label6.TabIndex = 13;
@@ -115,7 +120,7 @@
             // 
             // mtbHoraBovespa
             // 
-            this.mtbHoraBovespa.Location = new System.Drawing.Point(12, 21);
+            this.mtbHoraBovespa.Location = new System.Drawing.Point(12, 37);
             this.mtbHoraBovespa.Mask = "90:00";
             this.mtbHoraBovespa.Name = "mtbHoraBovespa";
             this.mtbHoraBovespa.Size = new System.Drawing.Size(100, 20);
@@ -125,7 +130,7 @@
             // 
             // mtbHoraSP500
             // 
-            this.mtbHoraSP500.Location = new System.Drawing.Point(118, 21);
+            this.mtbHoraSP500.Location = new System.Drawing.Point(118, 37);
             this.mtbHoraSP500.Mask = "90:00";
             this.mtbHoraSP500.Name = "mtbHoraSP500";
             this.mtbHoraSP500.Size = new System.Drawing.Size(100, 20);
@@ -135,7 +140,7 @@
             // 
             // mtbIndicador1
             // 
-            this.mtbIndicador1.Location = new System.Drawing.Point(224, 21);
+            this.mtbIndicador1.Location = new System.Drawing.Point(224, 37);
             this.mtbIndicador1.Mask = "90:00";
             this.mtbIndicador1.Name = "mtbIndicador1";
             this.mtbIndicador1.Size = new System.Drawing.Size(100, 20);
@@ -145,7 +150,7 @@
             // 
             // mtbIndicador2
             // 
-            this.mtbIndicador2.Location = new System.Drawing.Point(330, 21);
+            this.mtbIndicador2.Location = new System.Drawing.Point(330, 37);
             this.mtbIndicador2.Mask = "90:00";
             this.mtbIndicador2.Name = "mtbIndicador2";
             this.mtbIndicador2.Size = new System.Drawing.Size(100, 20);
@@ -155,7 +160,7 @@
             // 
             // mtbIndicdor3
             // 
-            this.mtbIndicdor3.Location = new System.Drawing.Point(436, 21);
+            this.mtbIndicdor3.Location = new System.Drawing.Point(436, 37);
             this.mtbIndicdor3.Mask = "90:00";
             this.mtbIndicdor3.Name = "mtbIndicdor3";
             this.mtbIndicdor3.Size = new System.Drawing.Size(100, 20);
@@ -165,7 +170,7 @@
             // 
             // mtbIndicador4
             // 
-            this.mtbIndicador4.Location = new System.Drawing.Point(542, 21);
+            this.mtbIndicador4.Location = new System.Drawing.Point(542, 37);
             this.mtbIndicador4.Mask = "90:00";
             this.mtbIndicador4.Name = "mtbIndicador4";
             this.mtbIndicador4.Size = new System.Drawing.Size(100, 20);
@@ -178,19 +183,61 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(647, 21);
+            this.lblHora.Location = new System.Drawing.Point(647, 37);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(79, 20);
             this.lblHora.TabIndex = 25;
             this.lblHora.Text = "00:00:00";
             // 
-            // wbCotacoes
+            // groupBox1
             // 
-            this.wbCotacoes.Location = new System.Drawing.Point(732, 5);
-            this.wbCotacoes.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbCotacoes.Name = "wbCotacoes";
-            this.wbCotacoes.Size = new System.Drawing.Size(434, 243);
-            this.wbCotacoes.TabIndex = 26;
+            this.groupBox1.Controls.Add(this.lblSP500Fut_var);
+            this.groupBox1.Controls.Add(this.lblSP500Fut_pts);
+            this.groupBox1.Location = new System.Drawing.Point(752, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(102, 72);
+            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "SP 500 Futuro";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // lblSP500Fut_var
+            // 
+            this.lblSP500Fut_var.AutoSize = true;
+            this.lblSP500Fut_var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSP500Fut_var.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Fut_var.Location = new System.Drawing.Point(13, 45);
+            this.lblSP500Fut_var.Name = "lblSP500Fut_var";
+            this.lblSP500Fut_var.Size = new System.Drawing.Size(79, 20);
+            this.lblSP500Fut_var.TabIndex = 29;
+            this.lblSP500Fut_var.Text = "00:00:00";
+            // 
+            // lblSP500Fut_pts
+            // 
+            this.lblSP500Fut_pts.AutoSize = true;
+            this.lblSP500Fut_pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSP500Fut_pts.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Fut_pts.Location = new System.Drawing.Point(13, 25);
+            this.lblSP500Fut_pts.Name = "lblSP500Fut_pts";
+            this.lblSP500Fut_pts.Size = new System.Drawing.Size(79, 20);
+            this.lblSP500Fut_pts.TabIndex = 28;
+            this.lblSP500Fut_pts.Text = "00:00:00";
+            // 
+            // trmCotacoes
+            // 
+            this.trmCotacoes.Enabled = true;
+            this.trmCotacoes.Interval = 60000;
+            this.trmCotacoes.Tick += new System.EventHandler(this.trmCotacoes_Tick);
+            // 
+            // lblLog
+            // 
+            this.lblLog.AutoSize = true;
+            this.lblLog.ForeColor = System.Drawing.Color.White;
+            this.lblLog.Location = new System.Drawing.Point(872, 30);
+            this.lblLog.Name = "lblLog";
+            this.lblLog.Size = new System.Drawing.Size(160, 13);
+            this.lblLog.TabIndex = 29;
+            this.lblLog.Text = "Log 00:00:00 00:00:00 00:00:00";
             // 
             // FrmAlertas
             // 
@@ -198,7 +245,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1207, 323);
-            this.Controls.Add(this.wbCotacoes);
+            this.Controls.Add(this.lblLog);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblHora);
             this.Controls.Add(this.mtbIndicador4);
             this.Controls.Add(this.mtbIndicdor3);
@@ -219,6 +267,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAlertas_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmAlertas_ResizeEnd);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,7 +289,11 @@
         private System.Windows.Forms.MaskedTextBox mtbIndicdor3;
         private System.Windows.Forms.MaskedTextBox mtbIndicador4;
         private System.Windows.Forms.Label lblHora;
-        private System.Windows.Forms.WebBrowser wbCotacoes;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblSP500Fut_var;
+        private System.Windows.Forms.Label lblSP500Fut_pts;
+        private System.Windows.Forms.Timer trmCotacoes;
+        private System.Windows.Forms.Label lblLog;
     }
 }
 

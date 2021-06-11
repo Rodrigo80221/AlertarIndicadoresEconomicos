@@ -7,11 +7,20 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Net;
+using HtmlAgilityPack;
 
 namespace AlertasEconomicos
 {
     public partial class FrmAlertas : Form
     {
+
+        private string WEB_IndicesMundiais { get; set; }
+        private string WEB_IndicesFuturos { get; set; }
+
+        private string XPATH_SP500Fut_pts { get; set; }
+        private string XPATH_SP500Fut_var { get; set; }
+
         public FrmAlertas()
         {
             InitializeComponent();
@@ -24,8 +33,39 @@ namespace AlertasEconomicos
 
         }
 
+        private void CarregarPropriedades()
+        {
+            WEB_IndicesMundiais = "https://br.investing.com/indices/major-indices";
+            WEB_IndicesFuturos = "https://br.investing.com/indices/indices-futures";
+
+            XPATH_SP500Fut_pts = "//*[@id='__next']/div/div/div[2]/main/div[3]/div[2]/table/tbody/tr[4]/td[4]";
+            XPATH_SP500Fut_var = "//*[@id='__next']/div/div/div[2]/main/div[3]/div[2]/table/tbody/tr[4]/td[8]";
+        }
+
+        private void CarregarCotacoes()
+        {
+
+            var web = new HtmlWeb();
+            var html = web.Load(WEB_IndicesFuturos);
+
+            lblSP500Fut_pts.Tag = lblSP500Fut_pts.Text;
+            lblSP500Fut_var.Tag = lblSP500Fut_var.Text;
+
+            lblSP500Fut_pts.Text = html.DocumentNode.SelectSingleNode(XPATH_SP500Fut_pts).InnerHtml; 
+            lblSP500Fut_var.Text = html.DocumentNode.SelectSingleNode(XPATH_SP500Fut_var).InnerHtml;
+
+            if (!lblSP500Fut_pts.Tag.Equals(lblSP500Fut_pts.Text))
+                lblLog.Text = lblHora.Text + " " + lblSP500Fut_pts.Tag + " " + lblSP500Fut_var.Tag; 
+
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            CarregarPropriedades();
+
+            CarregarCotacoes();
+
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
             mtbHoraBovespa.Text = ConfigurationManager.AppSettings["HoraBovespa"];
@@ -44,13 +84,8 @@ namespace AlertasEconomicos
             posicao.Y = Convert.ToInt16(locationY);
 
             this.Location = posicao;
-
-            wbCotacoes.Width = this.Width - 760;
-
-
+        
             this.BackColor = System.Drawing.Color.DimGray;
-
-            wbCotacoes.Navigate("https://www.google.com/finance/");
 
         }
 
@@ -124,7 +159,17 @@ namespace AlertasEconomicos
 
         private void FrmAlertas_ResizeEnd(object sender, EventArgs e)
         {
-            wbCotacoes.Width = this.Width - 760;
+          
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trmCotacoes_Tick(object sender, EventArgs e)
+        {
+            CarregarCotacoes();
         }
     }
 }
