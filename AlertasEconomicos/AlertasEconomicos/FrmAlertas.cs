@@ -15,12 +15,6 @@ namespace AlertasEconomicos
     public partial class FrmAlertas : Form
     {
 
-        private string WEB_IndicesMundiais { get; set; }
-        private string WEB_IndicesFuturos { get; set; }
-
-        private string XPATH_SP500Fut_pts { get; set; }
-        private string XPATH_SP500Fut_var { get; set; }
-
         public FrmAlertas()
         {
             InitializeComponent();
@@ -33,38 +27,71 @@ namespace AlertasEconomicos
 
         }
 
-        private void CarregarPropriedades()
-        {
-            WEB_IndicesMundiais = "https://br.investing.com/indices/major-indices";
-            WEB_IndicesFuturos = "https://br.investing.com/indices/indices-futures";
 
-            XPATH_SP500Fut_pts = "//*[@id='__next']/div/div/div[2]/main/div[3]/div[2]/table/tbody/tr[4]/td[4]";
-            XPATH_SP500Fut_var = "//*[@id='__next']/div/div/div[2]/main/div[3]/div[2]/table/tbody/tr[4]/td[8]";
-        }
-
-        private void CarregarCotacoes()
+        private void CarregarCotacoesFrame(string endereco,
+            Label lblCotacao,
+            Label lblVar,
+            Label lblStatus,
+            Label lblAnalise,
+            Label lblLog)
         {
 
             var web = new HtmlWeb();
-            var html = web.Load(WEB_IndicesFuturos);
+            var html = web.Load(endereco);
 
-            lblSP500Fut_pts.Tag = lblSP500Fut_pts.Text;
-            lblSP500Fut_var.Tag = lblSP500Fut_var.Text;
+            lblCotacao.Tag = lblCotacao.Text;
 
-            lblSP500Fut_pts.Text = html.DocumentNode.SelectSingleNode(XPATH_SP500Fut_pts).InnerHtml; 
-            lblSP500Fut_var.Text = html.DocumentNode.SelectSingleNode(XPATH_SP500Fut_var).InnerHtml;
+            // cotação
+            lblCotacao.Text = html.DocumentNode.SelectSingleNode("//*[@id='last_last']").InnerHtml;
 
-            if (!lblSP500Fut_pts.Tag.Equals(lblSP500Fut_pts.Text))
-                lblLog.Text = lblHora.Text + " " + lblSP500Fut_pts.Tag + " " + lblSP500Fut_var.Tag; 
+            // variação
+            lblVar.Text = html.DocumentNode.SelectSingleNode("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()").InnerHtml;
+                                                            
+            AtualizarCorVariacaoPercentual(lblVar);
 
+            // status
+            lblStatus.Text = html.DocumentNode.SelectSingleNode("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[2]/span[2]").InnerHtml;
+
+            // analise técnica
+            lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]").InnerHtml;
+
+            // log atualização         
+            AtualizarLog(lblCotacao,lblLog);
+
+        }
+
+
+        private void AtualizarCorVariacaoPercentual(Label label)
+        {
+            if (Convert.ToDecimal(label.Text.Replace("%", "").Replace(" ", "").ToString()) > 0)
+                label.ForeColor = System.Drawing.Color.Lime;
+            else
+                label.ForeColor = System.Drawing.Color.Red;
+        }
+
+        private void AtualizarLog(Label lblCotacao, Label lblLog)
+        {
+            if (!lblCotacao.Tag.Equals(lblCotacao.Text))
+                lblLog.Text = "Últ Atu. " + lblHora.Text;
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CarregarPropriedades();
+            try
+            {
+                wbCalendario.ScriptErrorsSuppressed = true;
+                wbCalendario.Navigate("file:///C:/alertas.html");
+                
+            }
+            catch (Exception)
+            {
 
-            CarregarCotacoes();
+ 
+            }
+            
+
+            trmCotacoes_Tick(null,null);
 
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
@@ -169,7 +196,31 @@ namespace AlertasEconomicos
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
         {
-            CarregarCotacoes();
+            CarregarCotacoesFrame("https://br.investing.com/indices/us-spx-500-futures",
+                lblSP500Fut_pts,
+                lblSP500Fut_var,
+                lblSP500Fut_status,
+                lblSP500Fut_Analise,
+                lblSP500Fut_log);
+
+            CarregarCotacoesFrame("https://br.investing.com/currencies/us-dollar-index",
+                lblDX_pts,
+                lblDX_var,
+                lblDX_status,
+                lblDX_Analise,
+                lblDX_Log);
+
+            CarregarCotacoesFrame("https://br.investing.com/rates-bonds/u.s.-10-year-bond-yield",
+                lbl10Anos_Pts,
+                lbl10Anos_Var,
+                lbl10Anos_Status,
+                lbl10Anos_Analise,
+                lbl10Anos_Log);
+        }
+
+        private void lblLog_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

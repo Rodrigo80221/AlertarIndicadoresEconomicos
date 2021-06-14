@@ -11,3 +11,4 @@ C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomic
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\bin\Debug\HtmlAgilityPack.pdb
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\bin\Debug\HtmlAgilityPack.xml
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.csproj.CopyComplete
+C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.csprojResolveAssemblyReference.cache
