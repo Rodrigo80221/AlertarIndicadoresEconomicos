@@ -45,12 +45,12 @@
             this.mtbIndicador4 = new System.Windows.Forms.MaskedTextBox();
             this.lblHora = new System.Windows.Forms.Label();
             this.gpbSP500FUT = new System.Windows.Forms.GroupBox();
+            this.lblSP500Fut_Analise = new System.Windows.Forms.Label();
+            this.lblSP500Fut_status = new System.Windows.Forms.Label();
             this.lblSP500Fut_var = new System.Windows.Forms.Label();
             this.lblSP500Fut_pts = new System.Windows.Forms.Label();
             this.trmCotacoes = new System.Windows.Forms.Timer(this.components);
             this.lblSP500Fut_log = new System.Windows.Forms.Label();
-            this.lblSP500Fut_status = new System.Windows.Forms.Label();
-            this.lblSP500Fut_Analise = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblDX_Analise = new System.Windows.Forms.Label();
             this.lblDX_status = new System.Windows.Forms.Label();
@@ -64,9 +64,37 @@
             this.lbl10Anos_Pts = new System.Windows.Forms.Label();
             this.lbl10Anos_Log = new System.Windows.Forms.Label();
             this.wbCalendario = new System.Windows.Forms.WebBrowser();
+            this.lblSP500Vix_Log = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblSP500Vix_Analise = new System.Windows.Forms.Label();
+            this.lblSP500Vix_Status = new System.Windows.Forms.Label();
+            this.lblSP500Vix_Var = new System.Windows.Forms.Label();
+            this.lblSP500Vix_Pts = new System.Windows.Forms.Label();
+            this.lblPetroleoWTI_Log = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblPetroleoWTI_Analise = new System.Windows.Forms.Label();
+            this.lblPetroleoWTI_Status = new System.Windows.Forms.Label();
+            this.lblPetroleoWTI_Var = new System.Windows.Forms.Label();
+            this.lblPetroleoWTI_Pts = new System.Windows.Forms.Label();
+            this.lblOuro_Log = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lblOuro_Analise = new System.Windows.Forms.Label();
+            this.lblOuro_Status = new System.Windows.Forms.Label();
+            this.lblOuro_Var = new System.Windows.Forms.Label();
+            this.lblOuro_Pts = new System.Windows.Forms.Label();
+            this.lblMinerio_Log = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblMinerio_Analise = new System.Windows.Forms.Label();
+            this.lblMinerio_Status = new System.Windows.Forms.Label();
+            this.lblMinerio_Var = new System.Windows.Forms.Label();
+            this.lblMinerio_Pts = new System.Windows.Forms.Label();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tmrHorario
@@ -79,7 +107,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 8;
@@ -89,7 +117,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(116, 21);
+            this.label2.Location = new System.Drawing.Point(116, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 9;
@@ -99,7 +127,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(221, 21);
+            this.label3.Location = new System.Drawing.Point(221, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 10;
@@ -109,7 +137,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(327, 21);
+            this.label4.Location = new System.Drawing.Point(327, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 11;
@@ -119,7 +147,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(433, 21);
+            this.label5.Location = new System.Drawing.Point(433, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 12;
@@ -129,7 +157,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(539, 21);
+            this.label6.Location = new System.Drawing.Point(539, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
             this.label6.TabIndex = 13;
@@ -137,7 +165,7 @@
             // 
             // mtbHoraBovespa
             // 
-            this.mtbHoraBovespa.Location = new System.Drawing.Point(12, 37);
+            this.mtbHoraBovespa.Location = new System.Drawing.Point(12, 25);
             this.mtbHoraBovespa.Mask = "90:00";
             this.mtbHoraBovespa.Name = "mtbHoraBovespa";
             this.mtbHoraBovespa.Size = new System.Drawing.Size(100, 20);
@@ -147,7 +175,7 @@
             // 
             // mtbHoraSP500
             // 
-            this.mtbHoraSP500.Location = new System.Drawing.Point(118, 37);
+            this.mtbHoraSP500.Location = new System.Drawing.Point(118, 25);
             this.mtbHoraSP500.Mask = "90:00";
             this.mtbHoraSP500.Name = "mtbHoraSP500";
             this.mtbHoraSP500.Size = new System.Drawing.Size(100, 20);
@@ -157,7 +185,7 @@
             // 
             // mtbIndicador1
             // 
-            this.mtbIndicador1.Location = new System.Drawing.Point(224, 37);
+            this.mtbIndicador1.Location = new System.Drawing.Point(224, 25);
             this.mtbIndicador1.Mask = "90:00";
             this.mtbIndicador1.Name = "mtbIndicador1";
             this.mtbIndicador1.Size = new System.Drawing.Size(100, 20);
@@ -167,7 +195,7 @@
             // 
             // mtbIndicador2
             // 
-            this.mtbIndicador2.Location = new System.Drawing.Point(330, 37);
+            this.mtbIndicador2.Location = new System.Drawing.Point(330, 25);
             this.mtbIndicador2.Mask = "90:00";
             this.mtbIndicador2.Name = "mtbIndicador2";
             this.mtbIndicador2.Size = new System.Drawing.Size(100, 20);
@@ -177,7 +205,7 @@
             // 
             // mtbIndicdor3
             // 
-            this.mtbIndicdor3.Location = new System.Drawing.Point(436, 37);
+            this.mtbIndicdor3.Location = new System.Drawing.Point(436, 25);
             this.mtbIndicdor3.Mask = "90:00";
             this.mtbIndicdor3.Name = "mtbIndicdor3";
             this.mtbIndicdor3.Size = new System.Drawing.Size(100, 20);
@@ -187,7 +215,7 @@
             // 
             // mtbIndicador4
             // 
-            this.mtbIndicador4.Location = new System.Drawing.Point(542, 37);
+            this.mtbIndicador4.Location = new System.Drawing.Point(542, 25);
             this.mtbIndicador4.Mask = "90:00";
             this.mtbIndicador4.Name = "mtbIndicador4";
             this.mtbIndicador4.Size = new System.Drawing.Size(100, 20);
@@ -200,7 +228,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(647, 37);
+            this.lblHora.Location = new System.Drawing.Point(647, 25);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(79, 20);
             this.lblHora.TabIndex = 25;
@@ -213,13 +241,35 @@
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_var);
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_pts);
             this.gpbSP500FUT.ForeColor = System.Drawing.Color.White;
-            this.gpbSP500FUT.Location = new System.Drawing.Point(752, 5);
+            this.gpbSP500FUT.Location = new System.Drawing.Point(752, 0);
             this.gpbSP500FUT.Name = "gpbSP500FUT";
             this.gpbSP500FUT.Size = new System.Drawing.Size(90, 86);
             this.gpbSP500FUT.TabIndex = 28;
             this.gpbSP500FUT.TabStop = false;
             this.gpbSP500FUT.Text = "SP 500 FUT";
             this.gpbSP500FUT.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // lblSP500Fut_Analise
+            // 
+            this.lblSP500Fut_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Fut_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Fut_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblSP500Fut_Analise.Name = "lblSP500Fut_Analise";
+            this.lblSP500Fut_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblSP500Fut_Analise.TabIndex = 31;
+            this.lblSP500Fut_Analise.Text = "Compra Forte";
+            this.lblSP500Fut_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSP500Fut_status
+            // 
+            this.lblSP500Fut_status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Fut_status.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Fut_status.Location = new System.Drawing.Point(19, 15);
+            this.lblSP500Fut_status.Name = "lblSP500Fut_status";
+            this.lblSP500Fut_status.Size = new System.Drawing.Size(60, 13);
+            this.lblSP500Fut_status.TabIndex = 30;
+            this.lblSP500Fut_status.Text = "Fechado";
+            this.lblSP500Fut_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSP500Fut_var
             // 
@@ -255,35 +305,13 @@
             // 
             this.lblSP500Fut_log.AutoSize = true;
             this.lblSP500Fut_log.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_log.Location = new System.Drawing.Point(749, 94);
+            this.lblSP500Fut_log.Location = new System.Drawing.Point(749, 87);
             this.lblSP500Fut_log.Name = "lblSP500Fut_log";
             this.lblSP500Fut_log.Size = new System.Drawing.Size(87, 13);
             this.lblSP500Fut_log.TabIndex = 29;
             this.lblSP500Fut_log.Text = "Últ Atu. 00:00:00";
             this.lblSP500Fut_log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblSP500Fut_log.Click += new System.EventHandler(this.lblLog_Click);
-            // 
-            // lblSP500Fut_status
-            // 
-            this.lblSP500Fut_status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSP500Fut_status.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_status.Location = new System.Drawing.Point(19, 15);
-            this.lblSP500Fut_status.Name = "lblSP500Fut_status";
-            this.lblSP500Fut_status.Size = new System.Drawing.Size(60, 13);
-            this.lblSP500Fut_status.TabIndex = 30;
-            this.lblSP500Fut_status.Text = "Fechado";
-            this.lblSP500Fut_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblSP500Fut_Analise
-            // 
-            this.lblSP500Fut_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSP500Fut_Analise.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_Analise.Location = new System.Drawing.Point(10, 69);
-            this.lblSP500Fut_Analise.Name = "lblSP500Fut_Analise";
-            this.lblSP500Fut_Analise.Size = new System.Drawing.Size(70, 13);
-            this.lblSP500Fut_Analise.TabIndex = 31;
-            this.lblSP500Fut_Analise.Text = "Compra Forte";
-            this.lblSP500Fut_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
@@ -292,7 +320,7 @@
             this.groupBox1.Controls.Add(this.lblDX_var);
             this.groupBox1.Controls.Add(this.lblDX_pts);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(870, 5);
+            this.groupBox1.Location = new System.Drawing.Point(870, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(90, 86);
             this.groupBox1.TabIndex = 30;
@@ -349,7 +377,7 @@
             // 
             this.lblDX_Log.AutoSize = true;
             this.lblDX_Log.ForeColor = System.Drawing.Color.White;
-            this.lblDX_Log.Location = new System.Drawing.Point(868, 94);
+            this.lblDX_Log.Location = new System.Drawing.Point(868, 87);
             this.lblDX_Log.Name = "lblDX_Log";
             this.lblDX_Log.Size = new System.Drawing.Size(87, 13);
             this.lblDX_Log.TabIndex = 31;
@@ -363,7 +391,7 @@
             this.groupBox2.Controls.Add(this.lbl10Anos_Var);
             this.groupBox2.Controls.Add(this.lbl10Anos_Pts);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(988, 5);
+            this.groupBox2.Location = new System.Drawing.Point(988, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(90, 86);
             this.groupBox2.TabIndex = 32;
@@ -420,7 +448,7 @@
             // 
             this.lbl10Anos_Log.AutoSize = true;
             this.lbl10Anos_Log.ForeColor = System.Drawing.Color.White;
-            this.lbl10Anos_Log.Location = new System.Drawing.Point(986, 94);
+            this.lbl10Anos_Log.Location = new System.Drawing.Point(986, 87);
             this.lbl10Anos_Log.Name = "lbl10Anos_Log";
             this.lbl10Anos_Log.Size = new System.Drawing.Size(87, 13);
             this.lbl10Anos_Log.TabIndex = 33;
@@ -429,18 +457,312 @@
             // 
             // wbCalendario
             // 
-            this.wbCalendario.Location = new System.Drawing.Point(12, 139);
+            this.wbCalendario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.wbCalendario.Location = new System.Drawing.Point(114, 110);
             this.wbCalendario.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbCalendario.Name = "wbCalendario";
-            this.wbCalendario.Size = new System.Drawing.Size(714, 467);
-            this.wbCalendario.TabIndex = 34;
+            this.wbCalendario.ScrollBarsEnabled = false;
+            this.wbCalendario.Size = new System.Drawing.Size(714, 470);
+            this.wbCalendario.TabIndex = 36;
+            // 
+            // lblSP500Vix_Log
+            // 
+            this.lblSP500Vix_Log.AutoSize = true;
+            this.lblSP500Vix_Log.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Vix_Log.Location = new System.Drawing.Point(1102, 87);
+            this.lblSP500Vix_Log.Name = "lblSP500Vix_Log";
+            this.lblSP500Vix_Log.Size = new System.Drawing.Size(87, 13);
+            this.lblSP500Vix_Log.TabIndex = 38;
+            this.lblSP500Vix_Log.Text = "Últ Atu. 00:00:00";
+            this.lblSP500Vix_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblSP500Vix_Analise);
+            this.groupBox3.Controls.Add(this.lblSP500Vix_Status);
+            this.groupBox3.Controls.Add(this.lblSP500Vix_Var);
+            this.groupBox3.Controls.Add(this.lblSP500Vix_Pts);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
+            this.groupBox3.Location = new System.Drawing.Point(1104, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(90, 86);
+            this.groupBox3.TabIndex = 37;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "SP 500 VIX";
+            // 
+            // lblSP500Vix_Analise
+            // 
+            this.lblSP500Vix_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Vix_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Vix_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblSP500Vix_Analise.Name = "lblSP500Vix_Analise";
+            this.lblSP500Vix_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblSP500Vix_Analise.TabIndex = 31;
+            this.lblSP500Vix_Analise.Text = "Compra Forte";
+            this.lblSP500Vix_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSP500Vix_Status
+            // 
+            this.lblSP500Vix_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Vix_Status.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Vix_Status.Location = new System.Drawing.Point(19, 15);
+            this.lblSP500Vix_Status.Name = "lblSP500Vix_Status";
+            this.lblSP500Vix_Status.Size = new System.Drawing.Size(60, 13);
+            this.lblSP500Vix_Status.TabIndex = 30;
+            this.lblSP500Vix_Status.Text = "Fechado";
+            this.lblSP500Vix_Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSP500Vix_Var
+            // 
+            this.lblSP500Vix_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Vix_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSP500Vix_Var.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Vix_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblSP500Vix_Var.Name = "lblSP500Vix_Var";
+            this.lblSP500Vix_Var.Size = new System.Drawing.Size(79, 20);
+            this.lblSP500Vix_Var.TabIndex = 29;
+            this.lblSP500Vix_Var.Text = "00:00:00";
+            this.lblSP500Vix_Var.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSP500Vix_Pts
+            // 
+            this.lblSP500Vix_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSP500Vix_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSP500Vix_Pts.ForeColor = System.Drawing.Color.White;
+            this.lblSP500Vix_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblSP500Vix_Pts.Name = "lblSP500Vix_Pts";
+            this.lblSP500Vix_Pts.Size = new System.Drawing.Size(79, 20);
+            this.lblSP500Vix_Pts.TabIndex = 28;
+            this.lblSP500Vix_Pts.Text = "00:00:00";
+            this.lblSP500Vix_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPetroleoWTI_Log
+            // 
+            this.lblPetroleoWTI_Log.AutoSize = true;
+            this.lblPetroleoWTI_Log.ForeColor = System.Drawing.Color.White;
+            this.lblPetroleoWTI_Log.Location = new System.Drawing.Point(1218, 87);
+            this.lblPetroleoWTI_Log.Name = "lblPetroleoWTI_Log";
+            this.lblPetroleoWTI_Log.Size = new System.Drawing.Size(87, 13);
+            this.lblPetroleoWTI_Log.TabIndex = 40;
+            this.lblPetroleoWTI_Log.Text = "Últ Atu. 00:00:00";
+            this.lblPetroleoWTI_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblPetroleoWTI_Analise);
+            this.groupBox4.Controls.Add(this.lblPetroleoWTI_Status);
+            this.groupBox4.Controls.Add(this.lblPetroleoWTI_Var);
+            this.groupBox4.Controls.Add(this.lblPetroleoWTI_Pts);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(1220, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(90, 86);
+            this.groupBox4.TabIndex = 39;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Petróleo WTI";
+            // 
+            // lblPetroleoWTI_Analise
+            // 
+            this.lblPetroleoWTI_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPetroleoWTI_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblPetroleoWTI_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblPetroleoWTI_Analise.Name = "lblPetroleoWTI_Analise";
+            this.lblPetroleoWTI_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblPetroleoWTI_Analise.TabIndex = 31;
+            this.lblPetroleoWTI_Analise.Text = "Compra Forte";
+            this.lblPetroleoWTI_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPetroleoWTI_Status
+            // 
+            this.lblPetroleoWTI_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPetroleoWTI_Status.ForeColor = System.Drawing.Color.White;
+            this.lblPetroleoWTI_Status.Location = new System.Drawing.Point(19, 15);
+            this.lblPetroleoWTI_Status.Name = "lblPetroleoWTI_Status";
+            this.lblPetroleoWTI_Status.Size = new System.Drawing.Size(60, 13);
+            this.lblPetroleoWTI_Status.TabIndex = 30;
+            this.lblPetroleoWTI_Status.Text = "Fechado";
+            this.lblPetroleoWTI_Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPetroleoWTI_Var
+            // 
+            this.lblPetroleoWTI_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPetroleoWTI_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPetroleoWTI_Var.ForeColor = System.Drawing.Color.White;
+            this.lblPetroleoWTI_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblPetroleoWTI_Var.Name = "lblPetroleoWTI_Var";
+            this.lblPetroleoWTI_Var.Size = new System.Drawing.Size(79, 20);
+            this.lblPetroleoWTI_Var.TabIndex = 29;
+            this.lblPetroleoWTI_Var.Text = "00:00:00";
+            this.lblPetroleoWTI_Var.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPetroleoWTI_Pts
+            // 
+            this.lblPetroleoWTI_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPetroleoWTI_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPetroleoWTI_Pts.ForeColor = System.Drawing.Color.White;
+            this.lblPetroleoWTI_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblPetroleoWTI_Pts.Name = "lblPetroleoWTI_Pts";
+            this.lblPetroleoWTI_Pts.Size = new System.Drawing.Size(79, 20);
+            this.lblPetroleoWTI_Pts.TabIndex = 28;
+            this.lblPetroleoWTI_Pts.Text = "00:00:00";
+            this.lblPetroleoWTI_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOuro_Log
+            // 
+            this.lblOuro_Log.AutoSize = true;
+            this.lblOuro_Log.ForeColor = System.Drawing.Color.White;
+            this.lblOuro_Log.Location = new System.Drawing.Point(1335, 87);
+            this.lblOuro_Log.Name = "lblOuro_Log";
+            this.lblOuro_Log.Size = new System.Drawing.Size(87, 13);
+            this.lblOuro_Log.TabIndex = 42;
+            this.lblOuro_Log.Text = "Últ Atu. 00:00:00";
+            this.lblOuro_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lblOuro_Analise);
+            this.groupBox5.Controls.Add(this.lblOuro_Status);
+            this.groupBox5.Controls.Add(this.lblOuro_Var);
+            this.groupBox5.Controls.Add(this.lblOuro_Pts);
+            this.groupBox5.ForeColor = System.Drawing.Color.White;
+            this.groupBox5.Location = new System.Drawing.Point(1337, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(90, 86);
+            this.groupBox5.TabIndex = 41;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Ouro";
+            // 
+            // lblOuro_Analise
+            // 
+            this.lblOuro_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOuro_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblOuro_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblOuro_Analise.Name = "lblOuro_Analise";
+            this.lblOuro_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblOuro_Analise.TabIndex = 31;
+            this.lblOuro_Analise.Text = "Compra Forte";
+            this.lblOuro_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOuro_Status
+            // 
+            this.lblOuro_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOuro_Status.ForeColor = System.Drawing.Color.White;
+            this.lblOuro_Status.Location = new System.Drawing.Point(19, 15);
+            this.lblOuro_Status.Name = "lblOuro_Status";
+            this.lblOuro_Status.Size = new System.Drawing.Size(60, 13);
+            this.lblOuro_Status.TabIndex = 30;
+            this.lblOuro_Status.Text = "Fechado";
+            this.lblOuro_Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOuro_Var
+            // 
+            this.lblOuro_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOuro_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuro_Var.ForeColor = System.Drawing.Color.White;
+            this.lblOuro_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblOuro_Var.Name = "lblOuro_Var";
+            this.lblOuro_Var.Size = new System.Drawing.Size(79, 20);
+            this.lblOuro_Var.TabIndex = 29;
+            this.lblOuro_Var.Text = "00:00:00";
+            this.lblOuro_Var.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOuro_Pts
+            // 
+            this.lblOuro_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOuro_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuro_Pts.ForeColor = System.Drawing.Color.White;
+            this.lblOuro_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblOuro_Pts.Name = "lblOuro_Pts";
+            this.lblOuro_Pts.Size = new System.Drawing.Size(79, 20);
+            this.lblOuro_Pts.TabIndex = 28;
+            this.lblOuro_Pts.Text = "00:00:00";
+            this.lblOuro_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMinerio_Log
+            // 
+            this.lblMinerio_Log.AutoSize = true;
+            this.lblMinerio_Log.ForeColor = System.Drawing.Color.White;
+            this.lblMinerio_Log.Location = new System.Drawing.Point(1451, 87);
+            this.lblMinerio_Log.Name = "lblMinerio_Log";
+            this.lblMinerio_Log.Size = new System.Drawing.Size(87, 13);
+            this.lblMinerio_Log.TabIndex = 44;
+            this.lblMinerio_Log.Text = "Últ Atu. 00:00:00";
+            this.lblMinerio_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.lblMinerio_Analise);
+            this.groupBox6.Controls.Add(this.lblMinerio_Status);
+            this.groupBox6.Controls.Add(this.lblMinerio_Var);
+            this.groupBox6.Controls.Add(this.lblMinerio_Pts);
+            this.groupBox6.ForeColor = System.Drawing.Color.White;
+            this.groupBox6.Location = new System.Drawing.Point(1453, 0);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(90, 86);
+            this.groupBox6.TabIndex = 43;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Minério Ferro";
+            // 
+            // lblMinerio_Analise
+            // 
+            this.lblMinerio_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinerio_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblMinerio_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblMinerio_Analise.Name = "lblMinerio_Analise";
+            this.lblMinerio_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblMinerio_Analise.TabIndex = 31;
+            this.lblMinerio_Analise.Text = "Compra Forte";
+            this.lblMinerio_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMinerio_Status
+            // 
+            this.lblMinerio_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinerio_Status.ForeColor = System.Drawing.Color.White;
+            this.lblMinerio_Status.Location = new System.Drawing.Point(19, 15);
+            this.lblMinerio_Status.Name = "lblMinerio_Status";
+            this.lblMinerio_Status.Size = new System.Drawing.Size(60, 13);
+            this.lblMinerio_Status.TabIndex = 30;
+            this.lblMinerio_Status.Text = "Fechado";
+            this.lblMinerio_Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMinerio_Var
+            // 
+            this.lblMinerio_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinerio_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinerio_Var.ForeColor = System.Drawing.Color.White;
+            this.lblMinerio_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblMinerio_Var.Name = "lblMinerio_Var";
+            this.lblMinerio_Var.Size = new System.Drawing.Size(79, 20);
+            this.lblMinerio_Var.TabIndex = 29;
+            this.lblMinerio_Var.Text = "00:00:00";
+            this.lblMinerio_Var.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMinerio_Pts
+            // 
+            this.lblMinerio_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinerio_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinerio_Pts.ForeColor = System.Drawing.Color.White;
+            this.lblMinerio_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblMinerio_Pts.Name = "lblMinerio_Pts";
+            this.lblMinerio_Pts.Size = new System.Drawing.Size(79, 20);
+            this.lblMinerio_Pts.TabIndex = 28;
+            this.lblMinerio_Pts.Text = "00:00:00";
+            this.lblMinerio_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1405, 618);
+            this.ClientSize = new System.Drawing.Size(1608, 621);
+            this.Controls.Add(this.lblMinerio_Log);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.lblOuro_Log);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.lblPetroleoWTI_Log);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.lblSP500Vix_Log);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.wbCalendario);
             this.Controls.Add(this.lbl10Anos_Log);
             this.Controls.Add(this.groupBox2);
@@ -471,6 +793,10 @@
             this.gpbSP500FUT.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -511,6 +837,30 @@
         private System.Windows.Forms.Label lbl10Anos_Pts;
         private System.Windows.Forms.Label lbl10Anos_Log;
         private System.Windows.Forms.WebBrowser wbCalendario;
+        private System.Windows.Forms.Label lblSP500Vix_Log;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblSP500Vix_Analise;
+        private System.Windows.Forms.Label lblSP500Vix_Status;
+        private System.Windows.Forms.Label lblSP500Vix_Var;
+        private System.Windows.Forms.Label lblSP500Vix_Pts;
+        private System.Windows.Forms.Label lblPetroleoWTI_Log;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblPetroleoWTI_Analise;
+        private System.Windows.Forms.Label lblPetroleoWTI_Status;
+        private System.Windows.Forms.Label lblPetroleoWTI_Var;
+        private System.Windows.Forms.Label lblPetroleoWTI_Pts;
+        private System.Windows.Forms.Label lblOuro_Log;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lblOuro_Analise;
+        private System.Windows.Forms.Label lblOuro_Status;
+        private System.Windows.Forms.Label lblOuro_Var;
+        private System.Windows.Forms.Label lblOuro_Pts;
+        private System.Windows.Forms.Label lblMinerio_Log;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label lblMinerio_Analise;
+        private System.Windows.Forms.Label lblMinerio_Status;
+        private System.Windows.Forms.Label lblMinerio_Var;
+        private System.Windows.Forms.Label lblMinerio_Pts;
     }
 }
 

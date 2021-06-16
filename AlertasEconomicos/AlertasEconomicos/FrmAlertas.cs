@@ -52,8 +52,23 @@ namespace AlertasEconomicos
             // status
             lblStatus.Text = html.DocumentNode.SelectSingleNode("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[2]/span[2]").InnerHtml;
 
-            // analise técnica
-            lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]").InnerHtml;
+            try
+            {
+                // analise técnica
+                if (lblAnalise.Equals(lblOuro_Analise) || lblAnalise.Equals(lblPetroleoWTI_Analise) || lblAnalise.Equals(lblMinerio_Analise))
+                {
+                    //Commodities
+                    lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[2]/tbody/tr[3]/td[4]").InnerHtml;
+                }
+                else
+                    lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]").InnerHtml;
+            }
+            catch (Exception)
+            {
+
+                lblAnalise.Text = "Sem dados";
+            }
+
 
             // log atualização         
             AtualizarLog(lblCotacao,lblLog);
@@ -80,39 +95,44 @@ namespace AlertasEconomicos
         {
             try
             {
+                this.TopMost = true;
+
+                var diretorio = System.IO.Directory.GetCurrentDirectory();
+
                 wbCalendario.ScriptErrorsSuppressed = true;
-                wbCalendario.Navigate("file:///C:/alertas.html");
-                
+                wbCalendario.Navigate(diretorio + "\\Calendario.html");                                              
+
+                trmCotacoes_Tick(null, null);
+
+                lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+
+                mtbHoraBovespa.Text = ConfigurationManager.AppSettings["HoraBovespa"];
+                mtbHoraSP500.Text = ConfigurationManager.AppSettings["HoraSP500"];
+
+                var width = ConfigurationManager.AppSettings["FormWidth"];
+                var Height = ConfigurationManager.AppSettings["FormHeight"];
+                var locationX = ConfigurationManager.AppSettings["LocationX"];
+                var locationY = ConfigurationManager.AppSettings["LocationY"];
+
+
+                this.Size = new Size(Convert.ToInt16(width), Convert.ToInt16(Height));
+
+                var posicao = new System.Drawing.Point();
+                posicao.X = Convert.ToInt16(locationX);
+                posicao.Y = Convert.ToInt16(locationY);
+
+                this.Location = posicao;
+
+                this.BackColor = System.Drawing.Color.DimGray;
+
+                FrmAlertas_ResizeEnd(null, null);
+
             }
             catch (Exception)
             {
 
- 
+
             }
-            
-
-            trmCotacoes_Tick(null,null);
-
-            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
-
-            mtbHoraBovespa.Text = ConfigurationManager.AppSettings["HoraBovespa"];
-            mtbHoraSP500.Text = ConfigurationManager.AppSettings["HoraSP500"];
-
-            var width = ConfigurationManager.AppSettings["FormWidth"];
-            var Height = ConfigurationManager.AppSettings["FormHeight"];
-            var locationX = ConfigurationManager.AppSettings["LocationX"];
-            var locationY = ConfigurationManager.AppSettings["LocationY"];
-
-
-            this.Size = new Size(Convert.ToInt16(width) , Convert.ToInt16(Height));
-
-            var posicao = new System.Drawing.Point();
-            posicao.X = Convert.ToInt16(locationX);
-            posicao.Y = Convert.ToInt16(locationY);
-
-            this.Location = posicao;
-        
-            this.BackColor = System.Drawing.Color.DimGray;
 
         }
 
@@ -186,7 +206,9 @@ namespace AlertasEconomicos
 
         private void FrmAlertas_ResizeEnd(object sender, EventArgs e)
         {
-          
+
+            wbCalendario.Size = new Size(714, this.Size.Height - 100);
+            this.wbCalendario.Location = new System.Drawing.Point(12, 110);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -216,6 +238,34 @@ namespace AlertasEconomicos
                 lbl10Anos_Status,
                 lbl10Anos_Analise,
                 lbl10Anos_Log);
+
+            CarregarCotacoesFrame("https://br.investing.com/indices/volatility-s-p-500",
+                lblSP500Vix_Pts,
+                lblSP500Vix_Var,
+                lblSP500Vix_Status,
+                lblSP500Vix_Analise,
+                lblSP500Vix_Log);
+
+            CarregarCotacoesFrame("https://br.investing.com/commodities/crude-oil",
+                lblPetroleoWTI_Pts,
+                lblPetroleoWTI_Var,
+                lblPetroleoWTI_Status,
+                lblPetroleoWTI_Analise,
+                lblPetroleoWTI_Log);
+
+            CarregarCotacoesFrame("https://br.investing.com/commodities/gold",
+                lblOuro_Pts,
+                lblOuro_Var,
+                lblOuro_Status,
+                lblOuro_Analise,
+                lblOuro_Log);
+
+            CarregarCotacoesFrame("https://br.investing.com/commodities/iron-ore-62-cfr-futures",
+                lblMinerio_Pts,
+                lblMinerio_Var,
+                lblMinerio_Status,
+                lblMinerio_Analise,
+                lblMinerio_Log);
         }
 
         private void lblLog_Click(object sender, EventArgs e)
