@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Net;
 using HtmlAgilityPack;
+using System.Threading;
 
 namespace AlertasEconomicos
 {
@@ -18,13 +19,9 @@ namespace AlertasEconomicos
         public FrmAlertas()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
 
             
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
 
@@ -90,17 +87,23 @@ namespace AlertasEconomicos
                 lblLog.Text = "Últ Atu. " + lblHora.Text;
         }
 
+        private void CarregarCalendario()
+        {
+            var diretorio = System.IO.Directory.GetCurrentDirectory();
+
+            wbCalendario.ScriptErrorsSuppressed = true;
+
+            wbCalendario.Navigate(diretorio + "\\Calendario.html");
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                this.TopMost = true;
+               // this.TopMost = true;
 
-                var diretorio = System.IO.Directory.GetCurrentDirectory();
-
-                wbCalendario.ScriptErrorsSuppressed = true;
-                wbCalendario.Navigate(diretorio + "\\Calendario.html");                                              
+               Thread t = new Thread(new ThreadStart(CarregarCalendario));
+                t.Start();                                                             
 
                 trmCotacoes_Tick(null, null);
 
@@ -173,7 +176,8 @@ namespace AlertasEconomicos
                     else if (corFundo == System.Drawing.Color.Red)
                         this.BackColor = System.Drawing.Color.DimGray;
 
-                    System.Media.SystemSounds.Hand.Play();
+                Thread t = new Thread(new ThreadStart(System.Media.SystemSounds.Hand.Play));
+                t.Start();
 
                 }
                 else
@@ -216,7 +220,7 @@ namespace AlertasEconomicos
 
         }
 
-        private void trmCotacoes_Tick(object sender, EventArgs e)
+        private void AtualizarCotacaoSP500()
         {
             CarregarCotacoesFrame("https://br.investing.com/indices/us-spx-500-futures",
                 lblSP500Fut_pts,
@@ -224,42 +228,60 @@ namespace AlertasEconomicos
                 lblSP500Fut_status,
                 lblSP500Fut_Analise,
                 lblSP500Fut_log);
+        }
 
+        private void AtualizarCotacaoDX()
+        {
             CarregarCotacoesFrame("https://br.investing.com/currencies/us-dollar-index",
                 lblDX_pts,
                 lblDX_var,
                 lblDX_status,
                 lblDX_Analise,
                 lblDX_Log);
+        }
 
+        private void AtualizarCotacao10Anos()
+        {
             CarregarCotacoesFrame("https://br.investing.com/rates-bonds/u.s.-10-year-bond-yield",
                 lbl10Anos_Pts,
                 lbl10Anos_Var,
                 lbl10Anos_Status,
                 lbl10Anos_Analise,
                 lbl10Anos_Log);
+        }
 
+        private void AtualizarCotacaosp500vix()
+        {
             CarregarCotacoesFrame("https://br.investing.com/indices/volatility-s-p-500",
                 lblSP500Vix_Pts,
                 lblSP500Vix_Var,
                 lblSP500Vix_Status,
                 lblSP500Vix_Analise,
                 lblSP500Vix_Log);
+        }
 
+        private void AtualizarCotacaoPetroleoWTI()
+        {
             CarregarCotacoesFrame("https://br.investing.com/commodities/crude-oil",
                 lblPetroleoWTI_Pts,
                 lblPetroleoWTI_Var,
                 lblPetroleoWTI_Status,
                 lblPetroleoWTI_Analise,
                 lblPetroleoWTI_Log);
+        }
 
+        private void AtualizarCotacaoOuro()
+        {
             CarregarCotacoesFrame("https://br.investing.com/commodities/gold",
                 lblOuro_Pts,
                 lblOuro_Var,
                 lblOuro_Status,
                 lblOuro_Analise,
                 lblOuro_Log);
+        }
 
+        private void AtualizarCotacaoMinerio()
+        {
             CarregarCotacoesFrame("https://br.investing.com/commodities/iron-ore-62-cfr-futures",
                 lblMinerio_Pts,
                 lblMinerio_Var,
@@ -268,9 +290,37 @@ namespace AlertasEconomicos
                 lblMinerio_Log);
         }
 
-        private void lblLog_Click(object sender, EventArgs e)
-        {
 
+        private void trmCotacoes_Tick(object sender, EventArgs e)
+        {
+            Thread threadSP500 = new Thread(new ThreadStart(AtualizarCotacaoSP500));
+            threadSP500.Start();
+
+            Thread threadDX = new Thread(new ThreadStart(AtualizarCotacaoDX));
+            threadDX.Start();
+
+            Thread thread = new Thread(new ThreadStart(AtualizarCotacao10Anos));
+            thread.Start();
+
+            Thread threadSP500vix = new Thread(new ThreadStart(AtualizarCotacaosp500vix));
+            threadSP500vix.Start();
+
+            Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
+            threadPetroleoWTI.Start();
+
+            Thread threadOuro = new Thread(new ThreadStart(AtualizarCotacaoOuro));
+            threadOuro.Start();
+
+            Thread threadMinerio = new Thread(new ThreadStart(AtualizarCotacaoMinerio));
+            threadMinerio.Start();
+
+                                                                            
+        }
+
+
+        private void FrmAlertas_LocationChanged(object sender, EventArgs e)
+        {
+            FrmAlertas_ResizeEnd(null, null);
         }
     }
 }

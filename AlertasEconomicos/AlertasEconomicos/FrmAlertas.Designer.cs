@@ -311,7 +311,6 @@
             this.lblSP500Fut_log.TabIndex = 29;
             this.lblSP500Fut_log.Text = "Últ Atu. 00:00:00";
             this.lblSP500Fut_log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblSP500Fut_log.Click += new System.EventHandler(this.lblLog_Click);
             // 
             // groupBox1
             // 
@@ -458,7 +457,7 @@
             // wbCalendario
             // 
             this.wbCalendario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.wbCalendario.Location = new System.Drawing.Point(114, 110);
+            this.wbCalendario.Location = new System.Drawing.Point(15, 109);
             this.wbCalendario.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbCalendario.Name = "wbCalendario";
             this.wbCalendario.ScrollBarsEnabled = false;
@@ -753,7 +752,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1608, 621);
             this.Controls.Add(this.lblMinerio_Log);
             this.Controls.Add(this.groupBox6);
@@ -790,6 +789,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAlertas_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResizeEnd += new System.EventHandler(this.FrmAlertas_ResizeEnd);
+            this.LocationChanged += new System.EventHandler(this.FrmAlertas_LocationChanged);
             this.gpbSP500FUT.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
