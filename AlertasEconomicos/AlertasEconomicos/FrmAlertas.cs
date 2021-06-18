@@ -100,7 +100,7 @@ namespace AlertasEconomicos
         {
             try
             {
-               // this.TopMost = true;
+               this.TopMost = true;
 
                Thread t = new Thread(new ThreadStart(CarregarCalendario));
                 t.Start();                                                             
@@ -109,6 +109,7 @@ namespace AlertasEconomicos
 
                 lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
+                mtbFuturos.Text = ConfigurationManager.AppSettings["HoraBovespaFuturos"];
                 mtbHoraBovespa.Text = ConfigurationManager.AppSettings["HoraBovespa"];
                 mtbHoraSP500.Text = ConfigurationManager.AppSettings["HoraSP500"];
 
@@ -210,6 +211,8 @@ namespace AlertasEconomicos
 
             settings["HoraBovespa"].Value = mtbHoraBovespa.Text;
             settings["HoraSP500"].Value = mtbHoraSP500.Text;
+            settings["HoraBovespaFuturos"].Value = mtbFuturos.Text;
+            
             settings["FormWidth"].Value = this.Width.ToString();
             settings["FormHeight"].Value = this.Height.ToString();
             settings["LocationX"].Value = this.Location.X.ToString();
@@ -333,6 +336,11 @@ namespace AlertasEconomicos
         private void FrmAlertas_LocationChanged(object sender, EventArgs e)
         {
             FrmAlertas_ResizeEnd(null, null);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
