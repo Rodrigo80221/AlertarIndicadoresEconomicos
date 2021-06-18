@@ -126,7 +126,7 @@ namespace AlertasEconomicos
 
                 this.Location = posicao;
 
-                this.BackColor = System.Drawing.Color.DimGray;
+                this.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
 
                 FrmAlertas_ResizeEnd(null, null);
 
@@ -141,6 +141,18 @@ namespace AlertasEconomicos
 
         private void tmrHorario_Tick(object sender, EventArgs e)
         {
+
+            DateTime timeUtc = DateTime.UtcNow;
+
+            var kstZoneUS = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            lblHoraUSA.Text = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, kstZoneUS).ToString("HH:mm:ss");
+
+            var kstZoneEuropa = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
+            lblHoraEuropa.Text = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, kstZoneEuropa).ToString("HH:mm:ss");
+
+            var kstZoneTokyo = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            lblHoraTokyo.Text = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, kstZoneTokyo).ToString("HH:mm:ss");
+
 
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
@@ -170,18 +182,18 @@ namespace AlertasEconomicos
                 {
                     var corFundo = this.BackColor;
 
-                    if (corFundo == System.Drawing.Color.DimGray)
+                    if (corFundo == System.Drawing.Color.FromArgb(51, 51, 51))
                         this.BackColor = System.Drawing.Color.Red;
 
                     else if (corFundo == System.Drawing.Color.Red)
-                        this.BackColor = System.Drawing.Color.DimGray;
+                        this.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
 
                 Thread t = new Thread(new ThreadStart(System.Media.SystemSounds.Hand.Play));
                 t.Start();
 
                 }
                 else
-                    this.BackColor = System.Drawing.Color.DimGray;
+                    this.BackColor = System.Drawing.Color.FromArgb(51,51,51);
 
         }
 

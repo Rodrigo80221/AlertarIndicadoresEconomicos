@@ -88,6 +88,9 @@
             this.lblMinerio_Status = new System.Windows.Forms.Label();
             this.lblMinerio_Var = new System.Windows.Forms.Label();
             this.lblMinerio_Pts = new System.Windows.Forms.Label();
+            this.lblHoraTokyo = new System.Windows.Forms.Label();
+            this.lblHoraEuropa = new System.Windows.Forms.Label();
+            this.lblHoraUSA = new System.Windows.Forms.Label();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -228,7 +231,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(647, 25);
+            this.lblHora.Location = new System.Drawing.Point(650, 10);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(79, 20);
             this.lblHora.TabIndex = 25;
@@ -748,12 +751,48 @@
             this.lblMinerio_Pts.Text = "00:00:00";
             this.lblMinerio_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblHoraTokyo
+            // 
+            this.lblHoraTokyo.AutoSize = true;
+            this.lblHoraTokyo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraTokyo.ForeColor = System.Drawing.Color.White;
+            this.lblHoraTokyo.Location = new System.Drawing.Point(650, 80);
+            this.lblHoraTokyo.Name = "lblHoraTokyo";
+            this.lblHoraTokyo.Size = new System.Drawing.Size(79, 20);
+            this.lblHoraTokyo.TabIndex = 45;
+            this.lblHoraTokyo.Text = "00:00:00";
+            // 
+            // lblHoraEuropa
+            // 
+            this.lblHoraEuropa.AutoSize = true;
+            this.lblHoraEuropa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraEuropa.ForeColor = System.Drawing.Color.White;
+            this.lblHoraEuropa.Location = new System.Drawing.Point(650, 60);
+            this.lblHoraEuropa.Name = "lblHoraEuropa";
+            this.lblHoraEuropa.Size = new System.Drawing.Size(79, 20);
+            this.lblHoraEuropa.TabIndex = 46;
+            this.lblHoraEuropa.Text = "00:00:00";
+            // 
+            // lblHoraUSA
+            // 
+            this.lblHoraUSA.AutoSize = true;
+            this.lblHoraUSA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraUSA.ForeColor = System.Drawing.Color.White;
+            this.lblHoraUSA.Location = new System.Drawing.Point(650, 40);
+            this.lblHoraUSA.Name = "lblHoraUSA";
+            this.lblHoraUSA.Size = new System.Drawing.Size(79, 20);
+            this.lblHoraUSA.TabIndex = 47;
+            this.lblHoraUSA.Text = "00:00:00";
+            // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1608, 621);
+            this.Controls.Add(this.lblHoraUSA);
+            this.Controls.Add(this.lblHoraEuropa);
+            this.Controls.Add(this.lblHoraTokyo);
             this.Controls.Add(this.lblMinerio_Log);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.lblOuro_Log);
@@ -861,6 +900,9 @@
         private System.Windows.Forms.Label lblMinerio_Status;
         private System.Windows.Forms.Label lblMinerio_Var;
         private System.Windows.Forms.Label lblMinerio_Pts;
+        private System.Windows.Forms.Label lblHoraTokyo;
+        private System.Windows.Forms.Label lblHoraEuropa;
+        private System.Windows.Forms.Label lblHoraUSA;
     }
 }
 
