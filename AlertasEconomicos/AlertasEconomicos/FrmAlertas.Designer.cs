@@ -97,6 +97,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.mtbFuturos = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.lblBTC_Analise = new System.Windows.Forms.Label();
+            this.lblBTC_Status = new System.Windows.Forms.Label();
+            this.lblBTC_Var = new System.Windows.Forms.Label();
+            this.lblBTC_Pts = new System.Windows.Forms.Label();
+            this.lblBTC_Log = new System.Windows.Forms.Label();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -104,6 +110,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tmrHorario
@@ -466,7 +473,7 @@
             // wbCalendario
             // 
             this.wbCalendario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.wbCalendario.Location = new System.Drawing.Point(15, 109);
+            this.wbCalendario.Location = new System.Drawing.Point(16, 109);
             this.wbCalendario.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbCalendario.Name = "wbCalendario";
             this.wbCalendario.ScrollBarsEnabled = false;
@@ -851,12 +858,85 @@
             this.label11.TabIndex = 53;
             this.label11.Text = "Bovespa Futuros";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.lblBTC_Analise);
+            this.groupBox7.Controls.Add(this.lblBTC_Status);
+            this.groupBox7.Controls.Add(this.lblBTC_Var);
+            this.groupBox7.Controls.Add(this.lblBTC_Pts);
+            this.groupBox7.ForeColor = System.Drawing.Color.White;
+            this.groupBox7.Location = new System.Drawing.Point(1565, 0);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(90, 86);
+            this.groupBox7.TabIndex = 44;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Bitcoin";
+            // 
+            // lblBTC_Analise
+            // 
+            this.lblBTC_Analise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBTC_Analise.ForeColor = System.Drawing.Color.White;
+            this.lblBTC_Analise.Location = new System.Drawing.Point(10, 69);
+            this.lblBTC_Analise.Name = "lblBTC_Analise";
+            this.lblBTC_Analise.Size = new System.Drawing.Size(70, 13);
+            this.lblBTC_Analise.TabIndex = 31;
+            this.lblBTC_Analise.Text = "Compra Forte";
+            this.lblBTC_Analise.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBTC_Status
+            // 
+            this.lblBTC_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBTC_Status.ForeColor = System.Drawing.Color.White;
+            this.lblBTC_Status.Location = new System.Drawing.Point(19, 15);
+            this.lblBTC_Status.Name = "lblBTC_Status";
+            this.lblBTC_Status.Size = new System.Drawing.Size(60, 13);
+            this.lblBTC_Status.TabIndex = 30;
+            this.lblBTC_Status.Text = "Fechado";
+            this.lblBTC_Status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBTC_Var
+            // 
+            this.lblBTC_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBTC_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBTC_Var.ForeColor = System.Drawing.Color.White;
+            this.lblBTC_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblBTC_Var.Name = "lblBTC_Var";
+            this.lblBTC_Var.Size = new System.Drawing.Size(79, 20);
+            this.lblBTC_Var.TabIndex = 29;
+            this.lblBTC_Var.Text = "00:00:00";
+            this.lblBTC_Var.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBTC_Pts
+            // 
+            this.lblBTC_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBTC_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBTC_Pts.ForeColor = System.Drawing.Color.White;
+            this.lblBTC_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblBTC_Pts.Name = "lblBTC_Pts";
+            this.lblBTC_Pts.Size = new System.Drawing.Size(79, 20);
+            this.lblBTC_Pts.TabIndex = 28;
+            this.lblBTC_Pts.Text = "00:00:00";
+            this.lblBTC_Pts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBTC_Log
+            // 
+            this.lblBTC_Log.AutoSize = true;
+            this.lblBTC_Log.ForeColor = System.Drawing.Color.White;
+            this.lblBTC_Log.Location = new System.Drawing.Point(1562, 87);
+            this.lblBTC_Log.Name = "lblBTC_Log";
+            this.lblBTC_Log.Size = new System.Drawing.Size(87, 13);
+            this.lblBTC_Log.TabIndex = 54;
+            this.lblBTC_Log.Text = "Últ Atu. 00:00:00";
+            this.lblBTC_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1608, 621);
+            this.ClientSize = new System.Drawing.Size(1764, 621);
+            this.Controls.Add(this.lblBTC_Log);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.mtbFuturos);
             this.Controls.Add(this.label10);
@@ -909,6 +989,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -982,6 +1063,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.MaskedTextBox mtbFuturos;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label lblBTC_Analise;
+        private System.Windows.Forms.Label lblBTC_Status;
+        private System.Windows.Forms.Label lblBTC_Var;
+        private System.Windows.Forms.Label lblBTC_Pts;
+        private System.Windows.Forms.Label lblBTC_Log;
     }
 }
 

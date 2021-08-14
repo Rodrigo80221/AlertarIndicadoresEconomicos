@@ -36,34 +36,28 @@ namespace AlertasEconomicos
             var web = new HtmlWeb();
             var html = web.Load(endereco);
 
-            lblCotacao.Tag = lblCotacao.Text;
-
-            // cotação
-            lblCotacao.Text = html.DocumentNode.SelectSingleNode("//*[@id='last_last']").InnerHtml;
-
-            // variação
-            lblVar.Text = html.DocumentNode.SelectSingleNode("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()").InnerHtml;
-                                                            
-            AtualizarCorVariacaoPercentual(lblVar);
-
-            // status
-            lblStatus.Text = html.DocumentNode.SelectSingleNode("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[2]/span[2]").InnerHtml;
-
             try
             {
+
+                lblCotacao.Tag = lblCotacao.Text;
+
+                // cotação
+                lblCotacao.Text = BuscarCotacao(html);
+
+                // variação
+                lblVar.Text = BuscarVariacao(html);
+
+                AtualizarCorVariacaoPercentual(lblVar);
+
+                // status
+                lblStatus.Text = BuscarStatus(html);
+
                 // analise técnica
-                if (lblAnalise.Equals(lblOuro_Analise) || lblAnalise.Equals(lblPetroleoWTI_Analise) || lblAnalise.Equals(lblMinerio_Analise))
-                {
-                    //Commodities
-                    lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[2]/tbody/tr[3]/td[4]").InnerHtml;
-                }
-                else
-                    lblAnalise.Text = html.DocumentNode.SelectSingleNode("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]").InnerHtml;
+                lblAnalise.Text = BuscarAnaliseTecnica(html);
             }
             catch (Exception)
             {
 
-                lblAnalise.Text = "Sem dados";
             }
 
 
@@ -72,6 +66,103 @@ namespace AlertasEconomicos
 
         }
 
+        private string BuscarCotacao(HtmlAgilityPack.HtmlDocument html)
+        {
+            try
+            {
+                return html.DocumentNode.SelectSingleNode("//*[@id='last_last']").InnerHtml;
+            }
+            catch (Exception)
+            {
+
+                try
+                {
+                    return html.DocumentNode.SelectSingleNode("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/span").InnerHtml;
+                }
+                catch (Exception)
+                {
+
+                    return "0";
+                }
+            }
+           
+        }
+
+        private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html)
+        {
+            string cotacao = "";
+
+            List<string> possiveisXPath = new List<string>();
+            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]/text()[2]");
+
+            foreach (var xPath in possiveisXPath)
+            {
+                cotacao = BuscarInnerHtml(html, xPath);
+
+                cotacao = cotacao.Replace("<!-- -->", "");
+
+                if (cotacao != "" && cotacao.Length < 15)
+                    return cotacao;
+            }
+
+            return "";        
+        }
+
+        private string BuscarStatus(HtmlAgilityPack.HtmlDocument html)
+        {
+            string status = "";
+
+            List<string> possiveisXPath = new List<string>();
+            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[2]/span[2]");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[2]/div[2]/time");
+
+            foreach (var xPath in possiveisXPath)
+            {
+                status = BuscarInnerHtml(html, xPath);
+
+                if (status != "" && status.Length < 15)
+                    return status;
+            }
+
+            return "";
+        }
+
+        private string BuscarAnaliseTecnica(HtmlAgilityPack.HtmlDocument html)
+        {
+            string analiseTecnica = "";
+
+            List<string> possiveisXPath = new List<string>();
+            possiveisXPath.Add("//*[@id='leftColumn']/table[2]/tbody/tr[3]/td[4]");
+            possiveisXPath.Add("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[5]/div/div[7]/div/div/div/table/tbody/tr[3]/td[5]");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[5]/div/div[9]/div/div/div/table/tbody/tr[3]/td[5]");
+
+
+            foreach (var xPath in possiveisXPath)
+            {
+                analiseTecnica = BuscarInnerHtml(html, xPath);
+
+                if (analiseTecnica != "" && analiseTecnica.Length < 15)
+                    return analiseTecnica;                
+            }
+                
+            return "";
+
+        }
+
+        public static string BuscarInnerHtml(HtmlAgilityPack.HtmlDocument html, string xPath)
+        {
+            try
+            {
+                return html.DocumentNode.SelectSingleNode(xPath).InnerHtml;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
 
         private void AtualizarCorVariacaoPercentual(Label label)
         {
@@ -100,7 +191,8 @@ namespace AlertasEconomicos
         {
             try
             {
-               this.TopMost = true;
+                if (!System.Diagnostics.Debugger.IsAttached)
+                    this.TopMost = true;
 
                Thread t = new Thread(new ThreadStart(CarregarCalendario));
                 t.Start();                                                             
@@ -194,7 +286,7 @@ namespace AlertasEconomicos
 
                 }
                 else
-                    this.BackColor = System.Drawing.Color.FromArgb(51,51,51);
+                    this.BackColor = System.Drawing.Color.FromArgb(51,51,51);          
 
         }
 
@@ -305,6 +397,16 @@ namespace AlertasEconomicos
                 lblMinerio_Log);
         }
 
+        private void AtualizarCotacaoBitcoin()
+        {
+            CarregarCotacoesFrame("https://br.investing.com/crypto/bitcoin/bitcoin-futures",
+                lblBTC_Pts,
+                lblBTC_Var,
+                lblBTC_Status,
+                lblBTC_Analise,
+                lblBTC_Log);
+        }
+
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
         {
@@ -329,7 +431,10 @@ namespace AlertasEconomicos
             Thread threadMinerio = new Thread(new ThreadStart(AtualizarCotacaoMinerio));
             threadMinerio.Start();
 
-                                                                            
+            Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
+            threadBitcoin.Start();
+
+            wbCalendario.Refresh();
         }
 
 
