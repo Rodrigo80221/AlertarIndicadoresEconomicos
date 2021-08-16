@@ -93,9 +93,9 @@ namespace AlertasEconomicos
             string cotacao = "";
 
             List<string> possiveisXPath = new List<string>();
-            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
+            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");            
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
             possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]/text()[2]");
 
             foreach (var xPath in possiveisXPath)
             {
@@ -103,8 +103,8 @@ namespace AlertasEconomicos
 
                 cotacao = cotacao.Replace("<!-- -->", "");
 
-                if (cotacao != "" && cotacao.Length < 15)
-                    return cotacao;
+                if (cotacao != "" && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
+                    return (cotacao.Contains("%")?cotacao:cotacao+"%");
             }
 
             return "";        
@@ -409,19 +409,19 @@ namespace AlertasEconomicos
 
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
-        {
+        {/*
             Thread threadSP500 = new Thread(new ThreadStart(AtualizarCotacaoSP500));
             threadSP500.Start();
-
+            
             Thread threadDX = new Thread(new ThreadStart(AtualizarCotacaoDX));
             threadDX.Start();
 
             Thread thread = new Thread(new ThreadStart(AtualizarCotacao10Anos));
             thread.Start();
-
+            */
             Thread threadSP500vix = new Thread(new ThreadStart(AtualizarCotacaosp500vix));
             threadSP500vix.Start();
-
+            /*
             Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
             threadPetroleoWTI.Start();
 
@@ -433,7 +433,7 @@ namespace AlertasEconomicos
 
             Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
             threadBitcoin.Start();
-
+            */
             wbCalendario.Refresh();
         }
 
