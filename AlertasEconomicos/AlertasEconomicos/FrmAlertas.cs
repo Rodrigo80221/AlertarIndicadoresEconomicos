@@ -409,7 +409,7 @@ namespace AlertasEconomicos
 
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
-        {/*
+        {
             Thread threadSP500 = new Thread(new ThreadStart(AtualizarCotacaoSP500));
             threadSP500.Start();
             
@@ -418,10 +418,10 @@ namespace AlertasEconomicos
 
             Thread thread = new Thread(new ThreadStart(AtualizarCotacao10Anos));
             thread.Start();
-            */
+            
             Thread threadSP500vix = new Thread(new ThreadStart(AtualizarCotacaosp500vix));
             threadSP500vix.Start();
-            /*
+            
             Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
             threadPetroleoWTI.Start();
 
@@ -433,7 +433,7 @@ namespace AlertasEconomicos
 
             Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
             threadBitcoin.Start();
-            */
+            
             wbCalendario.Refresh();
         }
 
