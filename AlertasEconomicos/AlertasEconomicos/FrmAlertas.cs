@@ -66,46 +66,7 @@ namespace AlertasEconomicos
 
         }
 
-        private void CarregarCotacoesDaChina(string endereco,
-            Label lblCotacao,
-            Label lblVar,
-            Label lblStatus,
-            Label lblAnalise,
-            Label lblLog)
-        {
 
-            var web = new HtmlWeb();
-            var html = web.Load(endereco);
-
-            try
-            {
-
-                lblCotacao.Tag = lblCotacao.Text;
-
-                // cotação
-                lblCotacao.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/span[1]").InnerHtml; ;
-
-                // variação
-                lblVar.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/p/span[2]").InnerHtml; 
-
-                AtualizarCorVariacaoPercentual(lblVar);
-
-                // status
-                lblStatus.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/p").InnerHtml; ;
-
-                // analise técnica
-                lblAnalise.Text = "";
-            }
-            catch (Exception)
-            {
-
-            }
-
-
-            // log atualização         
-            AtualizarLog(lblCotacao, lblLog);
-
-        }
 
         private string BuscarCotacao(HtmlAgilityPack.HtmlDocument html)
         {
@@ -431,7 +392,7 @@ namespace AlertasEconomicos
 
         private void AtualizarCotacaoMinerio()
         {
-            CarregarCotacoesDaChina("https://finance.sina.com.cn/futures/quotes/I0.shtml",
+            CarregarCotacoesFrame("https://br.investing.com/commodities/iron-ore-62-cfr-futures",
                 lblMinerio_Pts,
                 lblMinerio_Var,
                 lblMinerio_Status,
