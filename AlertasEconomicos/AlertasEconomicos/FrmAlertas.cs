@@ -66,6 +66,47 @@ namespace AlertasEconomicos
 
         }
 
+        private void CarregarCotacoesDaChina(string endereco,
+            Label lblCotacao,
+            Label lblVar,
+            Label lblStatus,
+            Label lblAnalise,
+            Label lblLog)
+        {
+
+            var web = new HtmlWeb();
+            var html = web.Load(endereco);
+
+            try
+            {
+
+                lblCotacao.Tag = lblCotacao.Text;
+
+                // cotação
+                lblCotacao.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/span[1]").InnerHtml; ;
+
+                // variação
+                lblVar.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/p/span[2]").InnerHtml; 
+
+                AtualizarCorVariacaoPercentual(lblVar);
+
+                // status
+                lblStatus.Text = html.DocumentNode.SelectSingleNode("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/p").InnerHtml; ;
+
+                // analise técnica
+                lblAnalise.Text = "";
+            }
+            catch (Exception)
+            {
+
+            }
+
+
+            // log atualização         
+            AtualizarLog(lblCotacao, lblLog);
+
+        }
+
         private string BuscarCotacao(HtmlAgilityPack.HtmlDocument html)
         {
             try
@@ -95,6 +136,7 @@ namespace AlertasEconomicos
             List<string> possiveisXPath = new List<string>();
             possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");            
             possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
+            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
             possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
 
             foreach (var xPath in possiveisXPath)
@@ -389,7 +431,7 @@ namespace AlertasEconomicos
 
         private void AtualizarCotacaoMinerio()
         {
-            CarregarCotacoesFrame("https://br.investing.com/commodities/iron-ore-62-cfr-futures",
+            CarregarCotacoesDaChina("https://finance.sina.com.cn/futures/quotes/I0.shtml",
                 lblMinerio_Pts,
                 lblMinerio_Var,
                 lblMinerio_Status,
@@ -434,7 +476,7 @@ namespace AlertasEconomicos
             Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
             threadBitcoin.Start();
             
-            wbCalendario.Refresh();
+            wbCalendario.Refresh(); 
         }
 
 
