@@ -310,8 +310,16 @@ namespace AlertasEconomicos
             
             settings["FormWidth"].Value = this.Width.ToString();
             settings["FormHeight"].Value = this.Height.ToString();
-            settings["LocationX"].Value = this.Location.X.ToString();
-            settings["LocationY"].Value = this.Location.Y.ToString();
+
+            if (this.Location.X > 0)
+                settings["LocationX"].Value = this.Location.X.ToString();
+            else
+                settings["LocationX"].Value = "0";
+
+            if (this.Location.Y > 0)
+                settings["LocationY"].Value = this.Location.Y.ToString();
+            else
+                settings["LocationY"].Value = "0";
 
             configFile.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
@@ -411,10 +419,68 @@ namespace AlertasEconomicos
         }
 
 
+
+        private void AtualizarVariacaoUS()
+        {
+            var web = new HtmlWeb();
+
+            var html = web.Load("https://www.investing.com/indices/us-30");
+            lblVariacaoDowJones.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoDowJones);
+
+            html = web.Load("https://www.investing.com/indices/us-spx-500");
+            lblVariacaoSP500.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoSP500);
+
+            html = web.Load("https://www.investing.com/indices/nasdaq-composite");
+            lblVariacaoNasdaq.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoNasdaq);
+        }
+
+        private void AtualizarVariacaoEUR()
+        {
+            var web = new HtmlWeb();
+
+            var html = web.Load("https://www.investing.com/indices/uk-100");
+            lblVariacaoFTSE100.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoFTSE100);
+
+            html = web.Load("https://www.investing.com/indices/france-40");
+            lblVariacaoCAC40.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoCAC40);
+
+            html = web.Load("https://www.investing.com/indices/germany-30");
+            lblVariacaoDAX.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoDAX);
+        }
+
+        private void AtualizarVariacaoASIA()
+        {
+            var web = new HtmlWeb();
+
+            var html = web.Load("https://www.investing.com/indices/japan-ni225");
+            lblVariacaoNIKKEI.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoNIKKEI);
+
+            html = web.Load("https://www.investing.com/indices/kospi");
+            lblVariacaoKOSPI.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoKOSPI);
+
+            html = web.Load("https://www.investing.com/indices/hang-sen-40");
+            lblVariacaoHangSeng.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoHangSeng);
+        }
+
+        private void AtualizarVariacaoOutros()
+        {
+
+        }
+
+
         private void trmCotacoes_Tick(object sender, EventArgs e)
         {
-            Thread threadSP500 = new Thread(new ThreadStart(AtualizarCotacaoSP500));
-            threadSP500.Start();
+            Thread threadSP500FUT = new Thread(new ThreadStart(AtualizarCotacaoSP500));
+            threadSP500FUT.Start();
             
             Thread threadDX = new Thread(new ThreadStart(AtualizarCotacaoDX));
             threadDX.Start();
@@ -437,8 +503,23 @@ namespace AlertasEconomicos
             Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
             threadBitcoin.Start();
             
-            wbCalendario.Refresh(); 
-        }
+            wbCalendario.Refresh();
+
+
+
+            Thread threadVariacaoUS = new Thread(new ThreadStart(AtualizarVariacaoUS));
+            threadVariacaoUS.Start();
+
+            Thread threadVariacaoEUR = new Thread(new ThreadStart(AtualizarVariacaoEUR));
+            threadVariacaoEUR.Start();
+
+            Thread threadVaricaoASIA = new Thread(new ThreadStart(AtualizarVariacaoASIA));
+            threadVaricaoASIA.Start();
+
+            Thread threadVariacaoOutros = new Thread(new ThreadStart(AtualizarVariacaoOutros));
+            threadVariacaoOutros.Start();
+
+          }
 
 
         private void FrmAlertas_LocationChanged(object sender, EventArgs e)
