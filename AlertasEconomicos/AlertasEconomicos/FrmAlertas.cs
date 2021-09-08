@@ -15,6 +15,12 @@ namespace AlertasEconomicos
 {
     public partial class FrmAlertas : Form
     {
+        public enum Site
+        {
+            Investing = 0,
+            MarketWach,
+            Sino
+        }
 
         public FrmAlertas()
         {
@@ -92,13 +98,32 @@ namespace AlertasEconomicos
 
         private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html)
         {
+           return BuscarVariacao(html, Site.Investing);
+        }
+
+        private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html, Site site)
+        {
             string cotacao = "";
 
             List<string> possiveisXPath = new List<string>();
-            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");            
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+
+            if (site == Site.Investing)
+            {
+                possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
+                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
+                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
+                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+            }
+
+            if (site == Site.MarketWach)
+            {
+                possiveisXPath.Add("//*[@id='maincontent']/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote");
+            }
+
+            if (site == Site.Sino)
+            {
+                possiveisXPath.Add("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/p/span[2]");
+            }
 
             foreach (var xPath in possiveisXPath)
             {
@@ -169,6 +194,9 @@ namespace AlertasEconomicos
 
         private void AtualizarCorVariacaoPercentual(Label label)
         {
+            if (string.IsNullOrEmpty(label.Text))
+                return;
+
             if (Convert.ToDecimal(label.Text.Replace("%", "").Replace(" ", "").ToString()) > 0)
                 label.ForeColor = System.Drawing.Color.Lime;
             else
@@ -473,7 +501,22 @@ namespace AlertasEconomicos
 
         private void AtualizarVariacaoOutros()
         {
+            var web = new HtmlWeb();
 
+            var html = web.Load("https://br.investing.com/indices/bloomberg-commodity");
+            lblVariacaoCommodityBloomberg.Text = BuscarVariacao(html);
+            AtualizarCorVariacaoPercentual(lblVariacaoCommodityBloomberg);
+
+            
+            html = web.Load("https://www.marketwatch.com/investing/fund/ewz");
+            lblVariacaoEWZ.Text = BuscarVariacao(html,Site.MarketWach);
+            AtualizarCorVariacaoPercentual(lblVariacaoEWZ);
+
+            
+            html = web.Load("https://finance.sina.com.cn/futures/quotes/I0.shtml");
+            lblVariacaoMinerioDalian.Text = BuscarVariacao(html,Site.Sino);
+            AtualizarCorVariacaoPercentual(lblVariacaoMinerioDalian);
+            
         }
 
 

@@ -111,13 +111,13 @@
             this.lblSP500 = new System.Windows.Forms.Label();
             this.lblDowJones = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblVariacaoDAX = new System.Windows.Forms.Label();
             this.lblVariacaoCAC40 = new System.Windows.Forms.Label();
             this.lblVariacaoFTSE100 = new System.Windows.Forms.Label();
             this.lblDax = new System.Windows.Forms.Label();
             this.lblCAC40 = new System.Windows.Forms.Label();
             this.lblFTSE100 = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.lblVariacaoHangSeng = new System.Windows.Forms.Label();
             this.lblVariacaoKOSPI = new System.Windows.Forms.Label();
             this.lblVariacaoNIKKEI = new System.Windows.Forms.Label();
@@ -276,7 +276,7 @@
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(516, 64);
+            this.lblHora.Location = new System.Drawing.Point(485, 64);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(79, 20);
             this.lblHora.TabIndex = 25;
@@ -289,7 +289,7 @@
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_var);
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_pts);
             this.gpbSP500FUT.ForeColor = System.Drawing.Color.White;
-            this.gpbSP500FUT.Location = new System.Drawing.Point(612, 0);
+            this.gpbSP500FUT.Location = new System.Drawing.Point(568, 0);
             this.gpbSP500FUT.Name = "gpbSP500FUT";
             this.gpbSP500FUT.Size = new System.Drawing.Size(90, 86);
             this.gpbSP500FUT.TabIndex = 28;
@@ -353,7 +353,7 @@
             // 
             this.lblSP500Fut_log.AutoSize = true;
             this.lblSP500Fut_log.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_log.Location = new System.Drawing.Point(609, 87);
+            this.lblSP500Fut_log.Location = new System.Drawing.Point(565, 87);
             this.lblSP500Fut_log.Name = "lblSP500Fut_log";
             this.lblSP500Fut_log.Size = new System.Drawing.Size(87, 13);
             this.lblSP500Fut_log.TabIndex = 29;
@@ -367,7 +367,7 @@
             this.groupBox1.Controls.Add(this.lblDX_var);
             this.groupBox1.Controls.Add(this.lblDX_pts);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(707, 0);
+            this.groupBox1.Location = new System.Drawing.Point(659, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(90, 86);
             this.groupBox1.TabIndex = 30;
@@ -424,7 +424,7 @@
             // 
             this.lblDX_Log.AutoSize = true;
             this.lblDX_Log.ForeColor = System.Drawing.Color.White;
-            this.lblDX_Log.Location = new System.Drawing.Point(705, 87);
+            this.lblDX_Log.Location = new System.Drawing.Point(657, 87);
             this.lblDX_Log.Name = "lblDX_Log";
             this.lblDX_Log.Size = new System.Drawing.Size(87, 13);
             this.lblDX_Log.TabIndex = 31;
@@ -438,7 +438,7 @@
             this.groupBox2.Controls.Add(this.lbl10Anos_Var);
             this.groupBox2.Controls.Add(this.lbl10Anos_Pts);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(802, 0);
+            this.groupBox2.Location = new System.Drawing.Point(750, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(90, 86);
             this.groupBox2.TabIndex = 32;
@@ -495,7 +495,7 @@
             // 
             this.lbl10Anos_Log.AutoSize = true;
             this.lbl10Anos_Log.ForeColor = System.Drawing.Color.White;
-            this.lbl10Anos_Log.Location = new System.Drawing.Point(800, 87);
+            this.lbl10Anos_Log.Location = new System.Drawing.Point(748, 87);
             this.lbl10Anos_Log.Name = "lbl10Anos_Log";
             this.lbl10Anos_Log.Size = new System.Drawing.Size(87, 13);
             this.lbl10Anos_Log.TabIndex = 33;
@@ -505,7 +505,7 @@
             // wbCalendario
             // 
             this.wbCalendario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.wbCalendario.Location = new System.Drawing.Point(29, 139);
+            this.wbCalendario.Location = new System.Drawing.Point(25, 139);
             this.wbCalendario.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbCalendario.Name = "wbCalendario";
             this.wbCalendario.ScrollBarsEnabled = false;
@@ -516,7 +516,7 @@
             // 
             this.lblSP500Vix_Log.AutoSize = true;
             this.lblSP500Vix_Log.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Vix_Log.Location = new System.Drawing.Point(895, 87);
+            this.lblSP500Vix_Log.Location = new System.Drawing.Point(839, 87);
             this.lblSP500Vix_Log.Name = "lblSP500Vix_Log";
             this.lblSP500Vix_Log.Size = new System.Drawing.Size(87, 13);
             this.lblSP500Vix_Log.TabIndex = 38;
@@ -530,7 +530,7 @@
             this.groupBox3.Controls.Add(this.lblSP500Vix_Var);
             this.groupBox3.Controls.Add(this.lblSP500Vix_Pts);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(897, 0);
+            this.groupBox3.Location = new System.Drawing.Point(841, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(90, 86);
             this.groupBox3.TabIndex = 37;
@@ -587,7 +587,7 @@
             // 
             this.lblPetroleoWTI_Log.AutoSize = true;
             this.lblPetroleoWTI_Log.ForeColor = System.Drawing.Color.White;
-            this.lblPetroleoWTI_Log.Location = new System.Drawing.Point(990, 87);
+            this.lblPetroleoWTI_Log.Location = new System.Drawing.Point(930, 87);
             this.lblPetroleoWTI_Log.Name = "lblPetroleoWTI_Log";
             this.lblPetroleoWTI_Log.Size = new System.Drawing.Size(87, 13);
             this.lblPetroleoWTI_Log.TabIndex = 40;
@@ -601,7 +601,7 @@
             this.groupBox4.Controls.Add(this.lblPetroleoWTI_Var);
             this.groupBox4.Controls.Add(this.lblPetroleoWTI_Pts);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(992, 0);
+            this.groupBox4.Location = new System.Drawing.Point(932, 0);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(90, 86);
             this.groupBox4.TabIndex = 39;
@@ -658,7 +658,7 @@
             // 
             this.lblOuro_Log.AutoSize = true;
             this.lblOuro_Log.ForeColor = System.Drawing.Color.White;
-            this.lblOuro_Log.Location = new System.Drawing.Point(1085, 87);
+            this.lblOuro_Log.Location = new System.Drawing.Point(1021, 87);
             this.lblOuro_Log.Name = "lblOuro_Log";
             this.lblOuro_Log.Size = new System.Drawing.Size(87, 13);
             this.lblOuro_Log.TabIndex = 42;
@@ -672,7 +672,7 @@
             this.groupBox5.Controls.Add(this.lblOuro_Var);
             this.groupBox5.Controls.Add(this.lblOuro_Pts);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(1087, 0);
+            this.groupBox5.Location = new System.Drawing.Point(1023, 0);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(90, 86);
             this.groupBox5.TabIndex = 41;
@@ -729,7 +729,7 @@
             // 
             this.lblMinerio_Log.AutoSize = true;
             this.lblMinerio_Log.ForeColor = System.Drawing.Color.White;
-            this.lblMinerio_Log.Location = new System.Drawing.Point(1180, 87);
+            this.lblMinerio_Log.Location = new System.Drawing.Point(1112, 87);
             this.lblMinerio_Log.Name = "lblMinerio_Log";
             this.lblMinerio_Log.Size = new System.Drawing.Size(87, 13);
             this.lblMinerio_Log.TabIndex = 44;
@@ -743,7 +743,7 @@
             this.groupBox6.Controls.Add(this.lblMinerio_Var);
             this.groupBox6.Controls.Add(this.lblMinerio_Pts);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(1182, 0);
+            this.groupBox6.Location = new System.Drawing.Point(1114, 0);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(90, 86);
             this.groupBox6.TabIndex = 43;
@@ -801,7 +801,7 @@
             this.lblHoraTokyo.AutoSize = true;
             this.lblHoraTokyo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraTokyo.ForeColor = System.Drawing.Color.White;
-            this.lblHoraTokyo.Location = new System.Drawing.Point(421, 66);
+            this.lblHoraTokyo.Location = new System.Drawing.Point(400, 66);
             this.lblHoraTokyo.Name = "lblHoraTokyo";
             this.lblHoraTokyo.Size = new System.Drawing.Size(79, 20);
             this.lblHoraTokyo.TabIndex = 45;
@@ -812,7 +812,7 @@
             this.lblHoraEuropa.AutoSize = true;
             this.lblHoraEuropa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraEuropa.ForeColor = System.Drawing.Color.White;
-            this.lblHoraEuropa.Location = new System.Drawing.Point(516, 25);
+            this.lblHoraEuropa.Location = new System.Drawing.Point(485, 25);
             this.lblHoraEuropa.Name = "lblHoraEuropa";
             this.lblHoraEuropa.Size = new System.Drawing.Size(79, 20);
             this.lblHoraEuropa.TabIndex = 46;
@@ -823,7 +823,7 @@
             this.lblHoraUSA.AutoSize = true;
             this.lblHoraUSA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraUSA.ForeColor = System.Drawing.Color.White;
-            this.lblHoraUSA.Location = new System.Drawing.Point(420, 25);
+            this.lblHoraUSA.Location = new System.Drawing.Point(399, 25);
             this.lblHoraUSA.Name = "lblHoraUSA";
             this.lblHoraUSA.Size = new System.Drawing.Size(79, 20);
             this.lblHoraUSA.TabIndex = 47;
@@ -833,7 +833,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(422, 11);
+            this.label7.Location = new System.Drawing.Point(401, 11);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 13);
             this.label7.TabIndex = 48;
@@ -844,7 +844,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(517, 11);
+            this.label8.Location = new System.Drawing.Point(486, 11);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 49;
@@ -854,7 +854,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(422, 52);
+            this.label9.Location = new System.Drawing.Point(401, 52);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 50;
@@ -864,7 +864,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(517, 50);
+            this.label10.Location = new System.Drawing.Point(486, 50);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(32, 13);
             this.label10.TabIndex = 51;
@@ -897,7 +897,7 @@
             this.groupBox7.Controls.Add(this.lblBTC_Var);
             this.groupBox7.Controls.Add(this.lblBTC_Pts);
             this.groupBox7.ForeColor = System.Drawing.Color.White;
-            this.groupBox7.Location = new System.Drawing.Point(1277, 0);
+            this.groupBox7.Location = new System.Drawing.Point(1205, 0);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(90, 86);
             this.groupBox7.TabIndex = 44;
@@ -954,7 +954,7 @@
             // 
             this.lblBTC_Log.AutoSize = true;
             this.lblBTC_Log.ForeColor = System.Drawing.Color.White;
-            this.lblBTC_Log.Location = new System.Drawing.Point(1274, 87);
+            this.lblBTC_Log.Location = new System.Drawing.Point(1202, 87);
             this.lblBTC_Log.Name = "lblBTC_Log";
             this.lblBTC_Log.Size = new System.Drawing.Size(87, 13);
             this.lblBTC_Log.TabIndex = 54;
@@ -970,7 +970,7 @@
             this.groupBox8.Controls.Add(this.lblSP500);
             this.groupBox8.Controls.Add(this.lblDowJones);
             this.groupBox8.ForeColor = System.Drawing.Color.White;
-            this.groupBox8.Location = new System.Drawing.Point(1375, 0);
+            this.groupBox8.Location = new System.Drawing.Point(1296, 0);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(134, 86);
             this.groupBox8.TabIndex = 45;
@@ -1046,28 +1046,12 @@
             this.groupBox9.Controls.Add(this.lblCAC40);
             this.groupBox9.Controls.Add(this.lblFTSE100);
             this.groupBox9.ForeColor = System.Drawing.Color.White;
-            this.groupBox9.Location = new System.Drawing.Point(1515, 0);
+            this.groupBox9.Location = new System.Drawing.Point(1431, 0);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(134, 86);
             this.groupBox9.TabIndex = 77;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "EUR INDEX UPDATE";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.lblVariacaoHangSeng);
-            this.groupBox10.Controls.Add(this.lblVariacaoKOSPI);
-            this.groupBox10.Controls.Add(this.lblVariacaoNIKKEI);
-            this.groupBox10.Controls.Add(this.lblHangSeng);
-            this.groupBox10.Controls.Add(this.lblKospi);
-            this.groupBox10.Controls.Add(this.lblNikkei);
-            this.groupBox10.ForeColor = System.Drawing.Color.White;
-            this.groupBox10.Location = new System.Drawing.Point(1655, 0);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(134, 86);
-            this.groupBox10.TabIndex = 78;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "ASIA INDEX UPDATE";
             // 
             // lblVariacaoDAX
             // 
@@ -1128,6 +1112,22 @@
             this.lblFTSE100.Size = new System.Drawing.Size(55, 13);
             this.lblFTSE100.TabIndex = 74;
             this.lblFTSE100.Text = "FTSE 100";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.lblVariacaoHangSeng);
+            this.groupBox10.Controls.Add(this.lblVariacaoKOSPI);
+            this.groupBox10.Controls.Add(this.lblVariacaoNIKKEI);
+            this.groupBox10.Controls.Add(this.lblHangSeng);
+            this.groupBox10.Controls.Add(this.lblKospi);
+            this.groupBox10.Controls.Add(this.lblNikkei);
+            this.groupBox10.ForeColor = System.Drawing.Color.White;
+            this.groupBox10.Location = new System.Drawing.Point(1566, 0);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(134, 86);
+            this.groupBox10.TabIndex = 78;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "ASIA INDEX UPDATE";
             // 
             // lblVariacaoHangSeng
             // 
@@ -1198,7 +1198,7 @@
             this.groupBox11.Controls.Add(this.lblCommodityBloomberg);
             this.groupBox11.Controls.Add(this.lblMinerioDalian);
             this.groupBox11.ForeColor = System.Drawing.Color.White;
-            this.groupBox11.Location = new System.Drawing.Point(1795, 0);
+            this.groupBox11.Location = new System.Drawing.Point(1701, 0);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(170, 86);
             this.groupBox11.TabIndex = 79;
