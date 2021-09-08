@@ -144,8 +144,8 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + " " + cotacao);
-                return "";
+    
+                return e.Message + " " + cotacao;
             }
      
         }
@@ -532,7 +532,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-         
+                MessageBox.Show(e.Message);
             }
 
             
