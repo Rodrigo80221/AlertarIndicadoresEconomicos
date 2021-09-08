@@ -534,7 +534,7 @@ namespace AlertasEconomicos
             html = web.Load("https://www.marketwatch.com/investing/fund/ewz");
             lblVariacaoEWZ.Text = BuscarVariacao(html,Site.MarketWach);
             AtualizarCorVariacaoPercentual(lblVariacaoEWZ);
-
+            /*
             try
             {
                 html = web.Load("https://finance.sina.com.cn/futures/quotes/I0.shtml");
@@ -545,7 +545,7 @@ namespace AlertasEconomicos
             {
                 lblError.Text += Environment.NewLine + e.Message;
             }
-
+            */
             
         }
 
