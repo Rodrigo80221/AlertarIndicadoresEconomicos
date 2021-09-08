@@ -125,6 +125,8 @@ namespace AlertasEconomicos
                 if (site == Site.Sino)
                 {
                     possiveisXPath.Add("//*[@id='futures-code-month-I2201']/td[3]/span/font/font");
+                    possiveisXPath.Add("/html/body/div[1]/div[2]/div[2]/table/tbody/tr/td[2]/div[1]/div/table/tbody/tr[1]/td[3]/span");
+
                 }                       //*[@id='futures-code-month-I2201']/td[3]/span/font/font
 
                 foreach (var xPath in possiveisXPath)
