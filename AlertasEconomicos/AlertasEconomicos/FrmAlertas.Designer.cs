@@ -131,6 +131,7 @@
             this.lblEWZ = new System.Windows.Forms.Label();
             this.lblCommodityBloomberg = new System.Windows.Forms.Label();
             this.lblMinerioDalian = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1265,12 +1266,23 @@
             this.lblMinerioDalian.TabIndex = 68;
             this.lblMinerioDalian.Text = "MINÉRIO DALIAN";
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.ForeColor = System.Drawing.Color.White;
+            this.lblError.Location = new System.Drawing.Point(748, 139);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(29, 13);
+            this.lblError.TabIndex = 80;
+            this.lblError.Text = "Error";
+            // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(2011, 621);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
@@ -1445,6 +1457,7 @@
         private System.Windows.Forms.Label lblEWZ;
         private System.Windows.Forms.Label lblCommodityBloomberg;
         private System.Windows.Forms.Label lblMinerioDalian;
+        private System.Windows.Forms.Label lblError;
     }
 }
 

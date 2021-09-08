@@ -128,7 +128,7 @@ namespace AlertasEconomicos
                     possiveisXPath.Add("//*[@id='futures-code-month-I2201']/td[3]/span/font/font");
                     possiveisXPath.Add("/html/body/div[1]/div[2]/div[2]/table/tbody/tr/td[2]/div[1]/div/table/tbody/tr[1]/td[3]/span");
 
-                }                       //*[@id='futures-code-month-I2201']/td[3]/span/font/font
+                }                     
 
                 foreach (var xPath in possiveisXPath)
                 {
@@ -136,7 +136,7 @@ namespace AlertasEconomicos
 
                     cotacao = cotacao.Replace("<!-- -->", "");
 
-                    if (cotacao != "" && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
+                    if (!string.IsNullOrEmpty(cotacao) && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
                         return (cotacao.Contains("%") ? cotacao : cotacao + "%");
                 }
 
@@ -145,7 +145,8 @@ namespace AlertasEconomicos
             catch (Exception e)
             {
     
-                return e.Message + " " + cotacao;
+                lblError.Text += Environment.NewLine + e.Message + " " + cotacao;
+                throw;
             }
      
         }
@@ -532,7 +533,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                lblError.Text += Environment.NewLine + e.Message;
             }
 
             
