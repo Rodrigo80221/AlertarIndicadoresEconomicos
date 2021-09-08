@@ -103,10 +103,11 @@ namespace AlertasEconomicos
 
         private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html, Site site)
         {
-            try
-            {
-                string cotacao = "";
 
+            string cotacao = "";
+
+            try
+            {                
                 List<string> possiveisXPath = new List<string>();
 
                 if (site == Site.Investing)
@@ -143,7 +144,8 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.Message + " " + cotacao);
+                return "";
             }
      
         }
