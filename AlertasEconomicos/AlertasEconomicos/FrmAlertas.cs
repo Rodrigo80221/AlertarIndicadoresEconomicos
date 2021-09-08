@@ -138,6 +138,16 @@ namespace AlertasEconomicos
 
                     if (!string.IsNullOrEmpty(cotacao) && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
                         return (cotacao.Contains("%") ? cotacao : cotacao + "%");
+                    else
+                    {
+                        if (site == Site.Sino)
+                        {
+                            if (string.IsNullOrEmpty(cotacao))
+                                lblError.Text += Environment.NewLine + "Retornou Vazio";
+                            else
+                                lblError.Text += Environment.NewLine + cotacao;
+                        }
+                    }
                 }
 
                 return "";
