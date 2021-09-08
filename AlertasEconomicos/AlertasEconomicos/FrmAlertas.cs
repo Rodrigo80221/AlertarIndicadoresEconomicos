@@ -103,39 +103,48 @@ namespace AlertasEconomicos
 
         private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html, Site site)
         {
-            string cotacao = "";
-
-            List<string> possiveisXPath = new List<string>();
-
-            if (site == Site.Investing)
+            try
             {
-                possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
-                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
-                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
-                possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+                string cotacao = "";
+
+                List<string> possiveisXPath = new List<string>();
+
+                if (site == Site.Investing)
+                {
+                    possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
+                    possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
+                    possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
+                    possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+                }
+
+                if (site == Site.MarketWach)
+                {
+                    possiveisXPath.Add("//*[@id='maincontent']/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote");
+                }
+
+                if (site == Site.Sino)
+                {
+                    possiveisXPath.Add("//*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]");
+                }                       //*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]
+
+                foreach (var xPath in possiveisXPath)
+                {
+                    cotacao = BuscarInnerHtml(html, xPath);
+
+                    cotacao = cotacao.Replace("<!-- -->", "");
+
+                    if (cotacao != "" && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
+                        return (cotacao.Contains("%") ? cotacao : cotacao + "%");
+                }
+
+                return "";
             }
-
-            if (site == Site.MarketWach)
+            catch (Exception e)
             {
-                possiveisXPath.Add("//*[@id='maincontent']/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote");
+                MessageBox.Show(e.ToString());
+                throw;
             }
-
-            if (site == Site.Sino)
-            {
-                possiveisXPath.Add("//*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]");
-            }                       //*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]
-
-            foreach (var xPath in possiveisXPath)
-            {
-                cotacao = BuscarInnerHtml(html, xPath);
-
-                cotacao = cotacao.Replace("<!-- -->", "");
-
-                if (cotacao != "" && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
-                    return (cotacao.Contains("%")?cotacao:cotacao+"%");
-            }
-
-            return "";        
+     
         }
 
         private string BuscarStatus(HtmlAgilityPack.HtmlDocument html)

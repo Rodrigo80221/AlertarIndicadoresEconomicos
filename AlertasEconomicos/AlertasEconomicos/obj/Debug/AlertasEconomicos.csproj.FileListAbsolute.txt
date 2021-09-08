@@ -12,3 +12,4 @@ C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomic
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\bin\Debug\HtmlAgilityPack.xml
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.csproj.CopyComplete
 C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\bin\Debug\Calendario.html
+C:\GitHubEspetado\AlertarIndicadoresEconomicos\AlertasEconomicos\AlertasEconomicos\obj\Debug\AlertasEconomicos.csprojResolveAssemblyReference.cache
