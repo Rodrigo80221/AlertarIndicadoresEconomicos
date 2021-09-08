@@ -122,8 +122,8 @@ namespace AlertasEconomicos
 
             if (site == Site.Sino)
             {
-                possiveisXPath.Add("//*[@id='table - box - futures - hq']/tbody/tr[1]/td[1]/div/p/span[2]");
-            }
+                possiveisXPath.Add("//*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]");
+            }                       //*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]
 
             foreach (var xPath in possiveisXPath)
             {
