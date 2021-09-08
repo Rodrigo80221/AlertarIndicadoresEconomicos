@@ -521,8 +521,16 @@ namespace AlertasEconomicos
             lblVariacaoEWZ.Text = BuscarVariacao(html,Site.MarketWach);
             AtualizarCorVariacaoPercentual(lblVariacaoEWZ);
 
+            try
+            {
+                html = web.Load("https://finance.sina.com.cn/futures/quotes/I0.shtml");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
             
-            html = web.Load("https://finance.sina.com.cn/futures/quotes/I0.shtml");
             lblVariacaoMinerioDalian.Text = BuscarVariacao(html,Site.Sino);
             AtualizarCorVariacaoPercentual(lblVariacaoMinerioDalian);
             
