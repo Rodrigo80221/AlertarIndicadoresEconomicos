@@ -141,8 +141,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
-                throw;
+                return "";
             }
      
         }
@@ -524,15 +523,14 @@ namespace AlertasEconomicos
             try
             {
                 html = web.Load("https://finance.sina.com.cn/futures/quotes/I0.shtml");
+                lblVariacaoMinerioDalian.Text = BuscarVariacao(html, Site.Sino);
+                AtualizarCorVariacaoPercentual(lblVariacaoMinerioDalian);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
-                throw;
+
             }
-            
-            lblVariacaoMinerioDalian.Text = BuscarVariacao(html,Site.Sino);
-            AtualizarCorVariacaoPercentual(lblVariacaoMinerioDalian);
+
             
         }
 
