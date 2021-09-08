@@ -124,8 +124,8 @@ namespace AlertasEconomicos
 
                 if (site == Site.Sino)
                 {
-                    possiveisXPath.Add("//*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]");
-                }                       //*[@id='table-box-futures-hq']/tbody/tr[1]/td[1]/div/p/span[2]
+                    possiveisXPath.Add("//*[@id='futures-code-month-I2201']/td[3]/span/font/font");
+                }                       //*[@id='futures-code-month-I2201']/td[3]/span/font/font
 
                 foreach (var xPath in possiveisXPath)
                 {
@@ -528,7 +528,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+         
             }
 
             
