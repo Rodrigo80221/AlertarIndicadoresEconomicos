@@ -141,7 +141,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-                return "";
+                throw;
             }
      
         }
@@ -528,7 +528,7 @@ namespace AlertasEconomicos
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
 
             
