@@ -131,7 +131,9 @@
             this.lblEWZ = new System.Windows.Forms.Label();
             this.lblCommodityBloomberg = new System.Windows.Forms.Label();
             this.lblMinerioDalian = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
+            this.cmdStatusInvest = new System.Windows.Forms.Button();
+            this.txtEnderecoStatusInvest = new System.Windows.Forms.TextBox();
+            this.txtdados = new System.Windows.Forms.TextBox();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -506,7 +508,7 @@
             // wbCalendario
             // 
             this.wbCalendario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.wbCalendario.Location = new System.Drawing.Point(25, 139);
+            this.wbCalendario.Location = new System.Drawing.Point(-18, 139);
             this.wbCalendario.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbCalendario.Name = "wbCalendario";
             this.wbCalendario.ScrollBarsEnabled = false;
@@ -1266,23 +1268,42 @@
             this.lblMinerioDalian.TabIndex = 68;
             this.lblMinerioDalian.Text = "MINÉRIO DALIAN";
             // 
-            // lblError
+            // cmdStatusInvest
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.White;
-            this.lblError.Location = new System.Drawing.Point(748, 139);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(29, 13);
-            this.lblError.TabIndex = 80;
-            this.lblError.Text = "Error";
+            this.cmdStatusInvest.Location = new System.Drawing.Point(784, 176);
+            this.cmdStatusInvest.Name = "cmdStatusInvest";
+            this.cmdStatusInvest.Size = new System.Drawing.Size(234, 39);
+            this.cmdStatusInvest.TabIndex = 80;
+            this.cmdStatusInvest.Text = "Ler Status Invest";
+            this.cmdStatusInvest.UseVisualStyleBackColor = true;
+            this.cmdStatusInvest.Click += new System.EventHandler(this.cmdStatusInvest_Click);
+            // 
+            // txtEnderecoStatusInvest
+            // 
+            this.txtEnderecoStatusInvest.Location = new System.Drawing.Point(784, 150);
+            this.txtEnderecoStatusInvest.Name = "txtEnderecoStatusInvest";
+            this.txtEnderecoStatusInvest.Size = new System.Drawing.Size(386, 20);
+            this.txtEnderecoStatusInvest.TabIndex = 81;
+            this.txtEnderecoStatusInvest.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtEnderecoStatusInvest_MouseClick);
+            this.txtEnderecoStatusInvest.TextChanged += new System.EventHandler(this.txtEnderecoStatusInvest_TextChanged);
+            // 
+            // txtdados
+            // 
+            this.txtdados.Location = new System.Drawing.Point(784, 235);
+            this.txtdados.Multiline = true;
+            this.txtdados.Name = "txtdados";
+            this.txtdados.Size = new System.Drawing.Size(386, 285);
+            this.txtdados.TabIndex = 82;
             // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(2011, 621);
-            this.Controls.Add(this.lblError);
+            this.ClientSize = new System.Drawing.Size(1924, 621);
+            this.Controls.Add(this.txtdados);
+            this.Controls.Add(this.txtEnderecoStatusInvest);
+            this.Controls.Add(this.cmdStatusInvest);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
@@ -1457,7 +1478,9 @@
         private System.Windows.Forms.Label lblEWZ;
         private System.Windows.Forms.Label lblCommodityBloomberg;
         private System.Windows.Forms.Label lblMinerioDalian;
-        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Button cmdStatusInvest;
+        private System.Windows.Forms.TextBox txtEnderecoStatusInvest;
+        private System.Windows.Forms.TextBox txtdados;
     }
 }
 

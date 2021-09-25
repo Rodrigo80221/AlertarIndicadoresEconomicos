@@ -140,6 +140,7 @@ namespace AlertasEconomicos
                         return (cotacao.Contains("%") ? cotacao : cotacao + "%");
                     else
                     {
+                        /*
                         if (site == Site.Sino)
                         {
                             if (string.IsNullOrEmpty(cotacao))
@@ -147,6 +148,7 @@ namespace AlertasEconomicos
                             else
                                 lblError.Text += Environment.NewLine + cotacao;
                         }
+                        */
                     }
                 }
 
@@ -155,7 +157,7 @@ namespace AlertasEconomicos
             catch (Exception e)
             {
     
-                lblError.Text += Environment.NewLine + e.Message + " " + cotacao;
+                //lblError.Text += Environment.NewLine + e.Message + " " + cotacao;
                 throw;
             }
      
@@ -525,8 +527,7 @@ namespace AlertasEconomicos
         private void AtualizarVariacaoOutros()
         {
             var web = new HtmlWeb();
-
-            var html = web.Load("https://br.investing.com/indices/bloomberg-commodity");
+          var html = web.Load("https://br.investing.com/indices/bloomberg-commodity");
             lblVariacaoCommodityBloomberg.Text = BuscarVariacao(html);
             AtualizarCorVariacaoPercentual(lblVariacaoCommodityBloomberg);
 
@@ -603,6 +604,68 @@ namespace AlertasEconomicos
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmdStatusInvest_Click(object sender, EventArgs e)
+        {         
+
+            try
+            {
+                var web = new HtmlWeb();
+                var html = web.Load(txtEnderecoStatusInvest.Text);
+
+                var dados = "";
+
+                //"Dividend Yield 
+                dados = html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[1]/div/div[4]/div/div[1]/strong").InnerHtml;
+                dados += "	";
+                //P / L
+                dados += html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[6]/div[2]/div/div[1]/div/div[2]/div/div/strong").InnerHtml;
+                dados += "	";
+                //LPA
+                dados += html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[6]/div[2]/div/div[1]/div/div[11]/div/div/strong").InnerHtml;
+                dados += "	";
+                //Margem Líquida
+                dados += html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[6]/div[2]/div/div[3]/div/div[4]/div/div/strong").InnerHtml;
+                dados += "	";
+                //ROE
+                dados += html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[6]/div[2]/div/div[4]/div/div[1]/div/div/strong").InnerHtml;
+                dados += "	";
+                //Liquidez Corrente
+                dados += html.DocumentNode.SelectSingleNode("/html/body/main/div[2]/div/div[6]/div[2]/div/div[2]/div/div[6]/div/div/strong").InnerHtml;
+                dados += "	";
+
+                txtdados.Text = dados;
+
+            }
+            catch (Exception msgm)
+            {
+                MessageBox.Show(msgm.Message);
+                txtdados.Text = "";
+
+
+            }       
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var texto = "6,49	10,22	3,56	20,53%	7,42%	1,95";
+
+     
+            foreach (char c in texto)
+            {
+                MessageBox.Show(c + ": " + (int)c);
+            }
+        }
+
+        private void txtEnderecoStatusInvest_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEnderecoStatusInvest_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtEnderecoStatusInvest.Text = "";
         }
     }
 }
