@@ -26,16 +26,15 @@ namespace AlertasEconomicos
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
+    
 
-            
         }
+
 
 
         private void CarregarCotacoesFrame(string endereco,
             Label lblCotacao,
             Label lblVar,
-            Label lblStatus,
-            Label lblAnalise,
             Label lblLog)
         {
 
@@ -55,11 +54,6 @@ namespace AlertasEconomicos
 
                 AtualizarCorVariacaoPercentual(lblVar);
 
-                // status
-                lblStatus.Text = BuscarStatus(html);
-
-                // analise técnica
-                lblAnalise.Text = BuscarAnaliseTecnica(html);
             }
             catch (Exception)
             {
@@ -85,7 +79,7 @@ namespace AlertasEconomicos
 
                 try
                 {
-                    return html.DocumentNode.SelectSingleNode("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/span").InnerHtml;
+                    return html.DocumentNode.SelectSingleNode("/html/body/div[1]/div[2]/div/div/div[2]/main/div/div[1]/div[2]/div[1]/span").InnerHtml;
                 }
                 catch (Exception)
                 {
@@ -112,10 +106,12 @@ namespace AlertasEconomicos
 
                 if (site == Site.Investing)
                 {
+                    possiveisXPath.Add("/html/body/div[1]/div[2]/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
+                    possiveisXPath.Add("/html/body/div[1]/div[2]/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
                     possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[1]/div[2]/span[4]/text()");
                     possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[2]");
                     possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]/text()[3]");
-                    possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");
+                    possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[1]");                    
                 }
 
                 if (site == Site.MarketWach)
@@ -136,7 +132,7 @@ namespace AlertasEconomicos
 
                     cotacao = cotacao.Replace("<!-- -->", "");
 
-                    if (!string.IsNullOrEmpty(cotacao) && cotacao.Length < 15 && cotacao != "+" && cotacao != "-")
+                    if (!string.IsNullOrEmpty(cotacao) && cotacao.Length < 15 && cotacao != "+" && cotacao != "-" && cotacao != "%)")
                         return (cotacao.Contains("%") ? cotacao : cotacao + "%");
                     else
                     {
@@ -234,24 +230,13 @@ namespace AlertasEconomicos
                 lblLog.Text = "Últ Atu. " + lblHora.Text;
         }
 
-        private void CarregarCalendario()
-        {
-            var diretorio = System.IO.Directory.GetCurrentDirectory();
-
-            wbCalendario.ScriptErrorsSuppressed = true;
-
-            wbCalendario.Navigate(diretorio + "\\Calendario.html");
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!System.Diagnostics.Debugger.IsAttached)
-                    this.TopMost = true;
-
-               Thread t = new Thread(new ThreadStart(CarregarCalendario));
-                t.Start();                                                             
+                    this.TopMost = true;                                                          
 
                 trmCotacoes_Tick(null, null);
 
@@ -382,8 +367,7 @@ namespace AlertasEconomicos
         private void FrmAlertas_ResizeEnd(object sender, EventArgs e)
         {
 
-            wbCalendario.Size = new Size(714, this.Size.Height - 100);
-            this.wbCalendario.Location = new System.Drawing.Point(12, 110);
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -393,11 +377,10 @@ namespace AlertasEconomicos
 
         private void AtualizarCotacaoSP500()
         {
+            
             CarregarCotacoesFrame("https://br.investing.com/indices/us-spx-500-futures",
                 lblSP500Fut_pts,
                 lblSP500Fut_var,
-                lblSP500Fut_status,
-                lblSP500Fut_Analise,
                 lblSP500Fut_log);
         }
 
@@ -406,11 +389,9 @@ namespace AlertasEconomicos
             CarregarCotacoesFrame("https://br.investing.com/currencies/us-dollar-index",
                 lblDX_pts,
                 lblDX_var,
-                lblDX_status,
-                lblDX_Analise,
                 lblDX_Log);
         }
-
+        /*
         private void AtualizarCotacao10Anos()
         {
             CarregarCotacoesFrame("https://br.investing.com/rates-bonds/u.s.-10-year-bond-yield",
@@ -420,7 +401,7 @@ namespace AlertasEconomicos
                 lbl10Anos_Analise,
                 lbl10Anos_Log);
         }
-
+        
         private void AtualizarCotacaosp500vix()
         {
             CarregarCotacoesFrame("https://br.investing.com/indices/volatility-s-p-500",
@@ -430,17 +411,15 @@ namespace AlertasEconomicos
                 lblSP500Vix_Analise,
                 lblSP500Vix_Log);
         }
-
+        */
         private void AtualizarCotacaoPetroleoWTI()
         {
             CarregarCotacoesFrame("https://br.investing.com/commodities/crude-oil",
                 lblPetroleoWTI_Pts,
                 lblPetroleoWTI_Var,
-                lblPetroleoWTI_Status,
-                lblPetroleoWTI_Analise,
                 lblPetroleoWTI_Log);
         }
-
+        /*
         private void AtualizarCotacaoOuro()
         {
             CarregarCotacoesFrame("https://br.investing.com/commodities/gold",
@@ -450,7 +429,7 @@ namespace AlertasEconomicos
                 lblOuro_Analise,
                 lblOuro_Log);
         }
-
+        
         private void AtualizarCotacaoMinerio()
         {
             CarregarCotacoesFrame("https://br.investing.com/commodities/iron-ore-62-cfr-futures",
@@ -546,10 +525,10 @@ namespace AlertasEconomicos
             {
                 lblError.Text += Environment.NewLine + e.Message;
             }
-            */
+            
             
         }
-
+   */
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
         {
@@ -559,14 +538,18 @@ namespace AlertasEconomicos
             Thread threadDX = new Thread(new ThreadStart(AtualizarCotacaoDX));
             threadDX.Start();
 
+            Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
+            threadPetroleoWTI.Start();
+
+            /*
+
             Thread thread = new Thread(new ThreadStart(AtualizarCotacao10Anos));
             thread.Start();
             
             Thread threadSP500vix = new Thread(new ThreadStart(AtualizarCotacaosp500vix));
             threadSP500vix.Start();
             
-            Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
-            threadPetroleoWTI.Start();
+
 
             Thread threadOuro = new Thread(new ThreadStart(AtualizarCotacaoOuro));
             threadOuro.Start();
@@ -577,10 +560,7 @@ namespace AlertasEconomicos
             Thread threadBitcoin = new Thread(new ThreadStart(AtualizarCotacaoBitcoin));
             threadBitcoin.Start();
             
-            wbCalendario.Refresh();
-
-
-
+ 
             Thread threadVariacaoUS = new Thread(new ThreadStart(AtualizarVariacaoUS));
             threadVariacaoUS.Start();
 
@@ -592,7 +572,7 @@ namespace AlertasEconomicos
 
             Thread threadVariacaoOutros = new Thread(new ThreadStart(AtualizarVariacaoOutros));
             threadVariacaoOutros.Start();
-
+            */
           }
 
 
@@ -605,7 +585,7 @@ namespace AlertasEconomicos
         {
 
         }
-
+        /*
         private void cmdStatusInvest_Click(object sender, EventArgs e)
         {         
 
@@ -646,7 +626,7 @@ namespace AlertasEconomicos
 
             }       
         }
-
+        */
         private void button1_Click(object sender, EventArgs e)
         {
             var texto = "6,49	10,22	3,56	20,53%	7,42%	1,95";
@@ -667,5 +647,11 @@ namespace AlertasEconomicos
         {
             txtEnderecoStatusInvest.Text = "";
         }
+
+        private void lblHoraTokyo_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
