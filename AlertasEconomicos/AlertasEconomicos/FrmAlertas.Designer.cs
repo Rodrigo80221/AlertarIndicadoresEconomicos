@@ -89,6 +89,8 @@
             this.txtLinkWTI = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.gpbSP500FUT.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -125,7 +127,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(282, 121);
+            this.label3.Location = new System.Drawing.Point(277, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 10;
@@ -136,7 +138,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(369, 121);
+            this.label4.Location = new System.Drawing.Point(343, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 11;
@@ -147,7 +149,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(456, 121);
+            this.label5.Location = new System.Drawing.Point(409, 121);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 12;
@@ -158,7 +160,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(541, 121);
+            this.label6.Location = new System.Drawing.Point(475, 121);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
             this.label6.TabIndex = 13;
@@ -187,10 +189,10 @@
             // mtbIndicador1
             // 
             this.mtbIndicador1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mtbIndicador1.Location = new System.Drawing.Point(271, 137);
+            this.mtbIndicador1.Location = new System.Drawing.Point(276, 137);
             this.mtbIndicador1.Mask = "90:00";
             this.mtbIndicador1.Name = "mtbIndicador1";
-            this.mtbIndicador1.Size = new System.Drawing.Size(81, 20);
+            this.mtbIndicador1.Size = new System.Drawing.Size(61, 20);
             this.mtbIndicador1.TabIndex = 16;
             this.mtbIndicador1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtbIndicador1.ValidatingType = typeof(System.DateTime);
@@ -198,10 +200,10 @@
             // mtbIndicador2
             // 
             this.mtbIndicador2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mtbIndicador2.Location = new System.Drawing.Point(359, 137);
+            this.mtbIndicador2.Location = new System.Drawing.Point(343, 137);
             this.mtbIndicador2.Mask = "90:00";
             this.mtbIndicador2.Name = "mtbIndicador2";
-            this.mtbIndicador2.Size = new System.Drawing.Size(81, 20);
+            this.mtbIndicador2.Size = new System.Drawing.Size(60, 20);
             this.mtbIndicador2.TabIndex = 17;
             this.mtbIndicador2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtbIndicador2.ValidatingType = typeof(System.DateTime);
@@ -209,10 +211,10 @@
             // mtbIndicdor3
             // 
             this.mtbIndicdor3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mtbIndicdor3.Location = new System.Drawing.Point(445, 137);
+            this.mtbIndicdor3.Location = new System.Drawing.Point(409, 137);
             this.mtbIndicdor3.Mask = "90:00";
             this.mtbIndicdor3.Name = "mtbIndicdor3";
-            this.mtbIndicdor3.Size = new System.Drawing.Size(81, 20);
+            this.mtbIndicdor3.Size = new System.Drawing.Size(60, 20);
             this.mtbIndicdor3.TabIndex = 18;
             this.mtbIndicdor3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtbIndicdor3.ValidatingType = typeof(System.DateTime);
@@ -220,10 +222,10 @@
             // mtbIndicador4
             // 
             this.mtbIndicador4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mtbIndicador4.Location = new System.Drawing.Point(532, 137);
+            this.mtbIndicador4.Location = new System.Drawing.Point(475, 137);
             this.mtbIndicador4.Mask = "90:00";
             this.mtbIndicador4.Name = "mtbIndicador4";
-            this.mtbIndicador4.Size = new System.Drawing.Size(81, 20);
+            this.mtbIndicador4.Size = new System.Drawing.Size(60, 20);
             this.mtbIndicador4.TabIndex = 19;
             this.mtbIndicador4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtbIndicador4.ValidatingType = typeof(System.DateTime);
@@ -232,11 +234,11 @@
             // 
             this.lblHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHora.AutoSize = true;
-            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(455, 91);
+            this.lblHora.Location = new System.Drawing.Point(403, 87);
             this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(80, 24);
+            this.lblHora.Size = new System.Drawing.Size(64, 17);
             this.lblHora.TabIndex = 25;
             this.lblHora.Text = "00:00:00";
             // 
@@ -245,9 +247,9 @@
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_var);
             this.gpbSP500FUT.Controls.Add(this.lblSP500Fut_pts);
             this.gpbSP500FUT.ForeColor = System.Drawing.Color.White;
-            this.gpbSP500FUT.Location = new System.Drawing.Point(106, 12);
+            this.gpbSP500FUT.Location = new System.Drawing.Point(106, 33);
             this.gpbSP500FUT.Name = "gpbSP500FUT";
-            this.gpbSP500FUT.Size = new System.Drawing.Size(90, 86);
+            this.gpbSP500FUT.Size = new System.Drawing.Size(90, 63);
             this.gpbSP500FUT.TabIndex = 28;
             this.gpbSP500FUT.TabStop = false;
             this.gpbSP500FUT.Text = "SP 500 FUT";
@@ -258,7 +260,7 @@
             this.lblSP500Fut_var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSP500Fut_var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSP500Fut_var.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_var.Location = new System.Drawing.Point(6, 48);
+            this.lblSP500Fut_var.Location = new System.Drawing.Point(6, 37);
             this.lblSP500Fut_var.Name = "lblSP500Fut_var";
             this.lblSP500Fut_var.Size = new System.Drawing.Size(79, 20);
             this.lblSP500Fut_var.TabIndex = 29;
@@ -270,7 +272,7 @@
             this.lblSP500Fut_pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSP500Fut_pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSP500Fut_pts.ForeColor = System.Drawing.Color.White;
-            this.lblSP500Fut_pts.Location = new System.Drawing.Point(6, 28);
+            this.lblSP500Fut_pts.Location = new System.Drawing.Point(6, 17);
             this.lblSP500Fut_pts.Name = "lblSP500Fut_pts";
             this.lblSP500Fut_pts.Size = new System.Drawing.Size(79, 20);
             this.lblSP500Fut_pts.TabIndex = 28;
@@ -299,9 +301,9 @@
             this.groupBox1.Controls.Add(this.lblDX_var);
             this.groupBox1.Controls.Add(this.lblDX_pts);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(10, 12);
+            this.groupBox1.Location = new System.Drawing.Point(10, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(90, 86);
+            this.groupBox1.Size = new System.Drawing.Size(90, 63);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DXY";
@@ -311,7 +313,7 @@
             this.lblDX_var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDX_var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDX_var.ForeColor = System.Drawing.Color.White;
-            this.lblDX_var.Location = new System.Drawing.Point(6, 48);
+            this.lblDX_var.Location = new System.Drawing.Point(5, 37);
             this.lblDX_var.Name = "lblDX_var";
             this.lblDX_var.Size = new System.Drawing.Size(79, 20);
             this.lblDX_var.TabIndex = 29;
@@ -323,7 +325,7 @@
             this.lblDX_pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDX_pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDX_pts.ForeColor = System.Drawing.Color.White;
-            this.lblDX_pts.Location = new System.Drawing.Point(6, 28);
+            this.lblDX_pts.Location = new System.Drawing.Point(5, 17);
             this.lblDX_pts.Name = "lblDX_pts";
             this.lblDX_pts.Size = new System.Drawing.Size(79, 20);
             this.lblDX_pts.TabIndex = 28;
@@ -357,9 +359,9 @@
             this.groupBox4.Controls.Add(this.lblPetroleoWTI_Var);
             this.groupBox4.Controls.Add(this.lblPetroleoWTI_Pts);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(203, 12);
+            this.groupBox4.Location = new System.Drawing.Point(203, 33);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(90, 86);
+            this.groupBox4.Size = new System.Drawing.Size(90, 63);
             this.groupBox4.TabIndex = 39;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Petróleo WTI";
@@ -369,7 +371,7 @@
             this.lblPetroleoWTI_Var.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPetroleoWTI_Var.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPetroleoWTI_Var.ForeColor = System.Drawing.Color.White;
-            this.lblPetroleoWTI_Var.Location = new System.Drawing.Point(6, 48);
+            this.lblPetroleoWTI_Var.Location = new System.Drawing.Point(5, 37);
             this.lblPetroleoWTI_Var.Name = "lblPetroleoWTI_Var";
             this.lblPetroleoWTI_Var.Size = new System.Drawing.Size(79, 20);
             this.lblPetroleoWTI_Var.TabIndex = 29;
@@ -381,7 +383,7 @@
             this.lblPetroleoWTI_Pts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPetroleoWTI_Pts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPetroleoWTI_Pts.ForeColor = System.Drawing.Color.White;
-            this.lblPetroleoWTI_Pts.Location = new System.Drawing.Point(6, 28);
+            this.lblPetroleoWTI_Pts.Location = new System.Drawing.Point(5, 17);
             this.lblPetroleoWTI_Pts.Name = "lblPetroleoWTI_Pts";
             this.lblPetroleoWTI_Pts.Size = new System.Drawing.Size(79, 20);
             this.lblPetroleoWTI_Pts.TabIndex = 28;
@@ -392,11 +394,11 @@
             // 
             this.lblHoraTokyo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHoraTokyo.AutoSize = true;
-            this.lblHoraTokyo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraTokyo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraTokyo.ForeColor = System.Drawing.Color.White;
-            this.lblHoraTokyo.Location = new System.Drawing.Point(346, 91);
+            this.lblHoraTokyo.Location = new System.Drawing.Point(315, 87);
             this.lblHoraTokyo.Name = "lblHoraTokyo";
-            this.lblHoraTokyo.Size = new System.Drawing.Size(80, 24);
+            this.lblHoraTokyo.Size = new System.Drawing.Size(64, 17);
             this.lblHoraTokyo.TabIndex = 45;
             this.lblHoraTokyo.Text = "00:00:00";
             this.lblHoraTokyo.Click += new System.EventHandler(this.lblHoraTokyo_Click);
@@ -405,11 +407,11 @@
             // 
             this.lblHoraEuropa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHoraEuropa.AutoSize = true;
-            this.lblHoraEuropa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraEuropa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraEuropa.ForeColor = System.Drawing.Color.White;
-            this.lblHoraEuropa.Location = new System.Drawing.Point(455, 36);
+            this.lblHoraEuropa.Location = new System.Drawing.Point(403, 39);
             this.lblHoraEuropa.Name = "lblHoraEuropa";
-            this.lblHoraEuropa.Size = new System.Drawing.Size(80, 24);
+            this.lblHoraEuropa.Size = new System.Drawing.Size(64, 17);
             this.lblHoraEuropa.TabIndex = 46;
             this.lblHoraEuropa.Text = "00:00:00";
             // 
@@ -417,11 +419,11 @@
             // 
             this.lblHoraUSA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHoraUSA.AutoSize = true;
-            this.lblHoraUSA.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraUSA.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHoraUSA.ForeColor = System.Drawing.Color.White;
-            this.lblHoraUSA.Location = new System.Drawing.Point(346, 36);
+            this.lblHoraUSA.Location = new System.Drawing.Point(315, 39);
             this.lblHoraUSA.Name = "lblHoraUSA";
-            this.lblHoraUSA.Size = new System.Drawing.Size(80, 24);
+            this.lblHoraUSA.Size = new System.Drawing.Size(64, 17);
             this.lblHoraUSA.TabIndex = 47;
             this.lblHoraUSA.Text = "00:00:00";
             // 
@@ -429,11 +431,11 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(346, 9);
+            this.label7.Location = new System.Drawing.Point(305, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 24);
+            this.label7.Size = new System.Drawing.Size(82, 20);
             this.label7.TabIndex = 48;
             this.label7.Text = "Nova York";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -442,11 +444,11 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(455, 9);
+            this.label8.Location = new System.Drawing.Point(402, 19);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 24);
+            this.label8.Size = new System.Drawing.Size(67, 20);
             this.label8.TabIndex = 49;
             this.label8.Text = "Londres";
             // 
@@ -454,11 +456,11 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(346, 67);
+            this.label9.Location = new System.Drawing.Point(319, 67);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 24);
+            this.label9.Size = new System.Drawing.Size(51, 20);
             this.label9.TabIndex = 50;
             this.label9.Text = "Tokyo";
             // 
@@ -466,11 +468,11 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(455, 67);
+            this.label10.Location = new System.Drawing.Point(409, 67);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 24);
+            this.label10.Size = new System.Drawing.Size(48, 20);
             this.label10.TabIndex = 51;
             this.label10.Text = "Brasil";
             // 
@@ -688,19 +690,45 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label12.Location = new System.Drawing.Point(564, 20);
+            this.label12.Location = new System.Drawing.Point(493, 16);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(37, 13);
             this.label12.TabIndex = 102;
             this.label12.Text = "Config";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
+            // btnStop
+            // 
+            this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStop.Location = new System.Drawing.Point(478, 91);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(57, 23);
+            this.btnStop.TabIndex = 103;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.LimeGreen;
+            this.label13.Location = new System.Drawing.Point(6, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(87, 20);
+            this.label13.TabIndex = 104;
+            this.label13.Text = "Real Trade";
+            // 
             // FrmAlertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(627, 166);
+            this.ClientSize = new System.Drawing.Size(542, 163);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.btnStop);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label15);
@@ -828,6 +856,8 @@
         private System.Windows.Forms.TextBox txtLinkWTI;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Label label13;
     }
 }
 

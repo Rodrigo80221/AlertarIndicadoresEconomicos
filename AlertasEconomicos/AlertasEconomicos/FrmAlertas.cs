@@ -316,6 +316,8 @@ namespace AlertasEconomicos
             }
 
             if (emAlerta)
+            {                
+                if (btnStop.Enabled == true)
                 {
                     var corFundo = this.BackColor;
 
@@ -325,12 +327,20 @@ namespace AlertasEconomicos
                     else if (corFundo == System.Drawing.Color.Red)
                         this.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
 
-                Thread t = new Thread(new ThreadStart(System.Media.SystemSounds.Hand.Play));
-                t.Start();
-
+                    Thread t = new Thread(new ThreadStart(System.Media.SystemSounds.Hand.Play));
+                    t.Start();
                 }
                 else
-                    this.BackColor = System.Drawing.Color.FromArgb(51,51,51);          
+                {
+                    this.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                }
+
+            }
+            else
+            {
+                this.BackColor = System.Drawing.Color.FromArgb(51, 51, 51);
+                btnStop.Enabled = true;
+            }
 
         }
 
@@ -509,9 +519,15 @@ namespace AlertasEconomicos
 
             if (this.Height == (int)TamanhoForm.Normal)
                 this.Height = (int)TamanhoForm.Configuracoes;
-
             else if (this.Height == (int)TamanhoForm.Configuracoes)
                 this.Height = (int)TamanhoForm.Normal;
+            else
+                this.Height = (int)TamanhoForm.Configuracoes;
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            btnStop.Enabled = false;
         }
     }
 }
