@@ -10,6 +10,12 @@ using System.Configuration;
 using System.Net;
 using HtmlAgilityPack;
 using System.Threading;
+using System.Runtime.InteropServices;
+using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Web.UI.DataVisualization.Charting;
+using Chart = System.Windows.Forms.DataVisualization.Charting.Chart;
+using Microsoft.Web.WebView2.Core;
 
 namespace AlertasEconomicos
 {
@@ -22,19 +28,77 @@ namespace AlertasEconomicos
             Sino
         }
 
+        private List<double> _valoresPercentuaisApple = new List<double>();
+        private List<double> _valoresPercentuaisMicrosoft = new List<double>();
+        private List<double> _valoresPercentuaisAmazon = new List<double>();
+        private List<double> _valoresPercentuaisT10 = new List<double>();
+
+        private List<double> _valoresPercentuaisVale = new List<double>();
+        private List<double> _valoresPercentuaisPetro = new List<double>();
+        private List<double> _valoresPercentuaisItau = new List<double>();
+        private List<double> _valoresPercentuaisEWZ = new List<double>();
+
+        private Color _corDoFundo = Color.FromArgb(51, 51, 51);
+
+        private HtmlAgilityPack.HtmlDocument _paginaApple = null;
+        private HtmlAgilityPack.HtmlDocument _paginaMicrosoft = null;
+        private HtmlAgilityPack.HtmlDocument _paginaAmazon = null;
+        private HtmlAgilityPack.HtmlDocument _paginaT10 = null;
+
+        private HtmlAgilityPack.HtmlDocument _paginaVale = null;
+        private HtmlAgilityPack.HtmlDocument _paginaPetro = null;
+        private HtmlAgilityPack.HtmlDocument _paginaItau = null;
+        private HtmlAgilityPack.HtmlDocument _paginaEWZ = null;
+
+        private string _linkApple;
+        private string _fullPathCotacaoApple;
+        private string _fullPathVariacaoApple;
+
+        private string _linkMicrosoft;
+        private string _fullPathCotacaoMicrosoft;
+        private string _fullPathVariacaoMicrosoft;
+
+        private string _linkAmazon;
+        private string _fullPathCotacaoAmazon;
+        private string _fullPathVariacaoAmazon;
+
+        private string _linkT10;
+        private string _fullPathCotacaoT10;
+        private string _fullPathVariacaoT10;
+
+
+        private string _linkVale;
+        private string _fullPathCotacaoVale;
+        private string _fullPathVariacaoVale;
+
+        private string _linkPetro;
+        private string _fullPathCotacaoPetro;
+        private string _fullPathVariacaoPetro;
+
+        private string _linkItau;
+        private string _fullPathCotacaoItau;
+        private string _fullPathVariacaoItau;
+
+        private string _linkEWZ;
+        private string _fullPathCotacaoEWZ;
+        private string _fullPathVariacaoEWZ;
+
+        private bool _rodouThreadsNesteMinuto = false;
+
         public FrmAlertas()
         {
             InitializeComponent();
-            Control.CheckForIllegalCrossThreadCalls = false;    
+            Control.CheckForIllegalCrossThreadCalls = false;
+            webView21.CoreWebView2InitializationCompleted += WebView21_CoreWebView2InitializationCompleted;
         }
 
         public enum TamanhoForm
         {
-            Normal = 200,
-            Configuracoes = 670
+            Altura = 768,
+            Largura = 590,
         }
 
-        private void CarregarCotacoesFrame(string endereco,
+        private void CarregarCotacoesFrame(HtmlAgilityPack.HtmlDocument paginaCarregada,
             Label lblCotacao,
             Label lblVar,
             Label lblLog,
@@ -44,13 +108,12 @@ namespace AlertasEconomicos
 
             try
             {
-                var web = new HtmlWeb();
-                var html = web.Load(endereco);
+                var html = paginaCarregada;
 
                 lblCotacao.Tag = lblCotacao.Text;
 
                 // cotação
-                lblCotacao.Text = BuscarCotacao(html,fullPathCotacao);
+                lblCotacao.Text = BuscarCotacao(html, fullPathCotacao);
 
                 // variação
                 lblVar.Text = BuscarVariacao(html, fullPathVariacao);
@@ -65,7 +128,7 @@ namespace AlertasEconomicos
 
 
             // log atualização         
-            AtualizarLog(lblCotacao,lblLog);
+            AtualizarLog(lblCotacao, lblLog);
 
         }
 
@@ -81,7 +144,7 @@ namespace AlertasEconomicos
             {
                 return "0";
             }
-           
+
         }
 
         private string BuscarVariacao(HtmlAgilityPack.HtmlDocument html, string fullPathVariacao)
@@ -90,7 +153,7 @@ namespace AlertasEconomicos
             string cotacao = "";
 
             try
-            {                
+            {
                 cotacao = BuscarInnerHtml(html, fullPathVariacao);
 
                 cotacao = cotacao.Replace("<!-- -->", "");
@@ -100,58 +163,15 @@ namespace AlertasEconomicos
                 cotacao = cotacao.Replace("(", "");
 
                 if (!string.IsNullOrEmpty(cotacao) && cotacao.Length < 15 && cotacao != "+" && cotacao != "-" && cotacao != "%)")
-                    return (cotacao.Contains("%") ? cotacao : cotacao + "%");                
+                    return (cotacao.Contains("%") ? cotacao : cotacao + "%");
 
                 return "0";
             }
             catch (Exception e)
             {
-    
-                //lblError.Text += Environment.NewLine + e.Message + " " + cotacao;
-                throw;
+
+                return "0";
             }
-     
-        }
-
-        private string BuscarStatus(HtmlAgilityPack.HtmlDocument html)
-        {
-            string status = "";
-
-            List<string> possiveisXPath = new List<string>();
-            possiveisXPath.Add("//*[@id='quotes_summary_current_data']/div[1]/div[1]/div[2]/span[2]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[1]/div[2]/div[2]/div[2]/time");
-
-            foreach (var xPath in possiveisXPath)
-            {
-                status = BuscarInnerHtml(html, xPath);
-
-                if (status != "" && status.Length < 15)
-                    return status;
-            }
-
-            return "";
-        }
-
-        private string BuscarAnaliseTecnica(HtmlAgilityPack.HtmlDocument html)
-        {
-            string analiseTecnica = "";
-
-            List<string> possiveisXPath = new List<string>();
-            possiveisXPath.Add("//*[@id='leftColumn']/table[2]/tbody/tr[3]/td[4]");
-            possiveisXPath.Add("//*[@id='leftColumn']/table[1]/tbody/tr[3]/td[4]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[5]/div/div[7]/div/div/div/table/tbody/tr[3]/td[5]");
-            possiveisXPath.Add("//*[@id='__next']/div/div/div[2]/main/div/div[5]/div/div[9]/div/div/div/table/tbody/tr[3]/td[5]");
-
-
-            foreach (var xPath in possiveisXPath)
-            {
-                analiseTecnica = BuscarInnerHtml(html, xPath);
-
-                if (analiseTecnica != "" && analiseTecnica.Length < 15)
-                    return analiseTecnica;                
-            }
-                
-            return "";
 
         }
 
@@ -188,20 +208,121 @@ namespace AlertasEconomicos
             catch (Exception)
             {
 
-            
-            }
 
-            
+            }
         }
 
+
+        private void DesenharGraficoLinha(Chart chart, List<double> valores)
+        {
+            if (valores.Count == 0)
+                return;
+
+            try
+            {
+                // Cria uma nova série para o gráfico de linha
+                System.Windows.Forms.DataVisualization.Charting.Series serie = new System.Windows.Forms.DataVisualization.Charting.Series();
+                serie.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                // Adiciona valores à série
+                for (int i = 0; i < valores.Count; i++)
+                {
+                    serie.Points.AddXY(i + 1, valores[i]); // Adiciona pontos (x, y) à série
+                }
+
+                // Define a cor da linha da série baseada no último valor
+                if (valores.Count > 0)
+                {
+                    if (valores[valores.Count - 1] > 0)
+                        serie.Color = System.Drawing.Color.LightGreen;
+                    else
+                        serie.Color = System.Drawing.Color.Red;
+                }
+
+                // Define a largura da linha da série
+                serie.BorderWidth = 3;
+
+                // Adiciona a série ao gráfico
+                chart.Series.Clear();
+                chart.Series.Add(serie);
+
+                chart.ResetAutoValues();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void FormatarGrafico(Chart chart)
+        {
+            chart.Series.Clear();
+            chart.Legends.Clear();
+            chart.BackColor = _corDoFundo;
+
+            // Itera sobre cada ChartArea no gráfico
+            foreach (System.Windows.Forms.DataVisualization.Charting.ChartArea area in chart.ChartAreas)
+            {
+                area.BackColor = _corDoFundo;
+                area.AxisX.LineColor = System.Drawing.Color.White;
+                area.AxisY.LineColor = System.Drawing.Color.White;
+                area.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+                area.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
+                area.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+
+                area.AxisX.LabelStyle.Enabled = false;
+            }
+        }
+
+        private async void WebView21_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+                await webView21.EnsureCoreWebView2Async(null);
+
+                // Carregar o site desejado
+                webView21.CoreWebView2.Navigate("https://tradingeconomics.com/united-states/government-bond-yield");
+
+                // Aguardar até que a página esteja completamente carregada
+                webView21.CoreWebView2.DocumentTitleChanged += CoreWebView2_DocumentTitleChanged;
+            }
+            else
+            {
+                MessageBox.Show("Falha ao inicializar o CoreWebView2.");
+            }
+        }
+
+        private async void CoreWebView2_DocumentTitleChanged(object sender, object e)
+        {
+            // Página completamente carregada, remova o manipulador do evento DocumentTitleChanged
+            webView21.CoreWebView2.DocumentTitleChanged -= CoreWebView2_DocumentTitleChanged;
+
+            // Simular um clique no elemento usando o XPath
+            string script = "var element = document.evaluate('/html/body/form/div[5]/div/div[1]/div[3]/div[1]/div/div/div[1]/div/div[6]/svg', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; if (element) { element.click(); }";
+
+            // Executar o script para simular o clique
+            await webView21.CoreWebView2.ExecuteScriptAsync(script);
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
             try
             {
+                
                 if (!System.Diagnostics.Debugger.IsAttached)
-                    this.TopMost = true;                                                                          
+                    this.TopMost = true;
+
+                FormatarGrafico(chrApple);
+                FormatarGrafico(chrMicrosoft);
+                FormatarGrafico(chrAmazon);
+                FormatarGrafico(chrT10);
+
+                FormatarGrafico(chrVale);
+                FormatarGrafico(chrPetro);
+                FormatarGrafico(chrItau);
+                FormatarGrafico(chrEWZ);
 
                 lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
 
@@ -209,51 +330,15 @@ namespace AlertasEconomicos
                 mtbHoraBovespa.Text = ConfigurationManager.AppSettings["HoraBovespa"];
                 mtbHoraSP500.Text = ConfigurationManager.AppSettings["HoraSP500"];
 
-                txtLinkSP500.Text = ConfigurationManager.AppSettings["txtLinkSP500"];
-                txtLinkDX.Text = ConfigurationManager.AppSettings["txtLinkDX"];
-                txtLinkWTI.Text = ConfigurationManager.AppSettings["txtLinkWTI"];
+                bool.TryParse(ConfigurationManager.AppSettings["chkBip1m"], out var bip);
+                chkBip1m.Checked = bip;
 
-                txtFullPathCotacaoSP500.Text = ConfigurationManager.AppSettings["txtFullPathCotacaoSP500"];
-                txtFullPathCotacaoDX.Text = ConfigurationManager.AppSettings["txtFullPathCotacaoDX"];
-                txtFullPathCotacaoWTI.Text = ConfigurationManager.AppSettings["txtFullPathCotacaoWTI"];
+                CarregarLinks();
 
-                txtFullPathVariacaoSP500.Text = ConfigurationManager.AppSettings["txtFullPathVariacaoSP500"];
-                txtFullPathVariacaoWTI.Text = ConfigurationManager.AppSettings["txtFullPathVariacaoWTI"];
-                txtFullPathVariacaoDX.Text = ConfigurationManager.AppSettings["txtFullPathVariacaoDX"];
-
-                if (string.IsNullOrEmpty(txtLinkDX.Text))
-                    txtLinkDX.Text = "https://br.investing.com/currencies/us-dollar-index";
-
-                if (string.IsNullOrEmpty(txtLinkSP500.Text))
-                    txtLinkSP500.Text = "https://br.investing.com/indices/us-spx-500-futures";
-
-                if (string.IsNullOrEmpty(txtLinkWTI.Text))
-                    txtLinkWTI.Text = "https://br.investing.com/commodities/crude-oil";
-
-                if (string.IsNullOrEmpty(txtFullPathCotacaoDX.Text))
-                    txtFullPathCotacaoSP500.Text = "/html/body/div[5]/section/div[4]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]";
-
-                if (string.IsNullOrEmpty(txtFullPathCotacaoSP500.Text))
-                    txtFullPathCotacaoDX.Text = "/html/body/div[1]/div/div/div/div[2]/main/div/div[1]/div[2]/div[1]/span";
-
-                if (string.IsNullOrEmpty(txtFullPathCotacaoWTI.Text))
-                    txtFullPathCotacaoWTI.Text = "/html/body/div[1]/div/div/div/div[2]/main/div/div[1]/div[2]/div[1]/span";
-
-                if (string.IsNullOrEmpty(txtFullPathVariacaoDX.Text))
-                    txtFullPathVariacaoDX.Text = "/html/body/div[5]/section/div[4]/div[1]/div[1]/div[1]/div[1]/div[2]/span[4]";
-
-                if (string.IsNullOrEmpty(txtFullPathVariacaoSP500.Text))
-                    txtFullPathVariacaoSP500.Text = "/html/body/div[1]/div/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]";
-
-                if (string.IsNullOrEmpty(txtFullPathVariacaoWTI.Text))
-                    txtFullPathVariacaoWTI.Text = "/html/body/div[1]/div/div/div/div[2]/main/div/div[1]/div[2]/div[1]/div[2]/span[2]";
-
-                var width = ConfigurationManager.AppSettings["FormWidth"];
-                var Height = (int)TamanhoForm.Normal; // ConfigurationManager.AppSettings["FormHeight"];
+                var width = (int)TamanhoForm.Largura;
+                var Height = (int)TamanhoForm.Altura;
                 var locationX = ConfigurationManager.AppSettings["LocationX"];
                 var locationY = ConfigurationManager.AppSettings["LocationY"];
-
-                this.Size = new Size(Convert.ToInt16(width), Convert.ToInt16(Height));
 
                 var posicao = new System.Drawing.Point();
                 posicao.X = Convert.ToInt16(locationX);
@@ -274,6 +359,41 @@ namespace AlertasEconomicos
 
             }
 
+        }
+
+        private void CarregarLinks()
+        {
+            _linkApple = "https://www.marketwatch.com/investing/stock/aapl?mod=watchlist_ticker";
+            _fullPathCotacaoApple = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoApple = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkMicrosoft = "https://www.marketwatch.com/investing/stock/msft?mod=search_symbol";
+            _fullPathCotacaoMicrosoft = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoMicrosoft = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkAmazon = "https://www.marketwatch.com/investing/stock/amzn?mod=search_symbol";
+            _fullPathCotacaoAmazon = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoAmazon = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkT10 = "https://www.marketwatch.com/investing/bond/tmubmusd10y?countrycode=bx&mod=search_symbol";
+            _fullPathCotacaoT10 = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span/bg-quote";
+            _fullPathVariacaoT10 = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+
+            _linkVale = "https://www.marketwatch.com/investing/stock/vale?mod=search_symbol";
+            _fullPathCotacaoVale = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoVale = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkPetro = "https://www.marketwatch.com/investing/stock/pbr?mod=search_symbol";
+            _fullPathCotacaoPetro = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoPetro = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkItau = "https://www.marketwatch.com/investing/stock/itub?mod=search_symbol";
+            _fullPathCotacaoItau = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoItau = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
+
+            _linkEWZ = "https://www.marketwatch.com/investing/fund/ewz?mod=search_symbol";
+            _fullPathCotacaoEWZ = "/html/body/div[3]/div[2]/div[3]/div/div[2]/h2/bg-quote";
+            _fullPathVariacaoEWZ = "/html/body/div[3]/div[2]/div[3]/div/div[2]/bg-quote/span[2]/bg-quote";
         }
 
         private void tmrHorario_Tick(object sender, EventArgs e)
@@ -300,12 +420,12 @@ namespace AlertasEconomicos
 
             foreach (Control c in this.Controls)
             {
-      
+
                 if (c is MaskedTextBox)
                 {
                     try
                     {
-                        if ((DateTime.Parse(c.Text) >= hora.AddMinutes(-2)) && (DateTime.Parse(c.Text) <= hora.AddMinutes(2)))
+                        if ((DateTime.Parse(c.Text) >= hora.AddMinutes(-1)) && (DateTime.Parse(c.Text) <= hora.AddMinutes(1)))
                             emAlerta = true;
                     }
                     catch (Exception)
@@ -315,8 +435,10 @@ namespace AlertasEconomicos
 
             }
 
+            BiparNoFinalDo1Minuto();
+
             if (emAlerta)
-            {                
+            {
                 if (btnStop.Enabled == true)
                 {
                     var corFundo = this.BackColor;
@@ -344,9 +466,26 @@ namespace AlertasEconomicos
 
         }
 
+        private void BiparNoFinalDo1Minuto()
+        {
+            try
+            {
+
+                if (chkBip1m.Checked == true && DateTime.Now.Second >= 55)
+                {
+                    Console.Beep();
+                }
+
+            }
+            catch
+            {
+
+            }
+        }
+
         private void txtHoraBovespa_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void FrmAlertas_FormClosed(object sender, FormClosedEventArgs e)
@@ -365,6 +504,10 @@ namespace AlertasEconomicos
             settings["HoraSP500"].Value = mtbHoraSP500.Text;
             settings["HoraBovespaFuturos"].Value = mtbFuturos.Text;
 
+            string valor = chkBip1m.Checked == true ? "true" : "false";
+
+            settings["chkBip1m"].Value = valor;
+
             settings["FormWidth"].Value = this.Width.ToString();
             settings["FormHeight"].Value = this.Height.ToString();
 
@@ -377,18 +520,6 @@ namespace AlertasEconomicos
                 settings["LocationY"].Value = this.Location.Y.ToString();
             else
                 settings["LocationY"].Value = "0";
-
-            settings["txtLinkSP500"].Value = txtLinkSP500.Text;
-            settings["txtLinkDX"].Value = txtLinkDX.Text;
-            settings["txtLinkWTI"].Value = txtLinkWTI.Text;
-
-            settings["txtFullPathCotacaoSP500"].Value = txtFullPathCotacaoSP500.Text;
-            settings["txtFullPathCotacaoDX"].Value = txtFullPathCotacaoDX.Text;
-            settings["txtFullPathCotacaoWTI"].Value = txtFullPathCotacaoWTI.Text;
-
-            settings["txtFullPathVariacaoSP500"].Value = txtFullPathVariacaoSP500.Text;
-            settings["txtFullPathVariacaoWTI"].Value = txtFullPathVariacaoWTI.Text;
-            settings["txtFullPathVariacaoDX"].Value = txtFullPathVariacaoDX.Text;
 
             configFile.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
@@ -405,49 +536,295 @@ namespace AlertasEconomicos
 
         }
 
-        private void AtualizarCotacaoSP500()
+        private void AtualizarCotacaoApple()
         {
-            
-            CarregarCotacoesFrame(txtLinkSP500.Text,
-                lblSP500Fut_pts,
-                lblSP500Fut_var,
-                lblSP500Fut_log,
-                txtFullPathVariacaoSP500.Text,
-                txtFullPathCotacaoSP500.Text);
+            try
+            {
+                _paginaApple = CarregarPagina(_paginaApple, _linkApple);
+
+                CarregarCotacoesFrame(_paginaApple,
+                    lblCotacaoApple,
+                    lblVariacaoApple,
+                    lblAtuApple,
+                    _fullPathVariacaoApple,
+                    _fullPathCotacaoApple);
+
+                CarregarList(_valoresPercentuaisApple, lblVariacaoApple.Text);
+
+                DesenharGraficoLinha(chrApple, _valoresPercentuaisApple);
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
 
-        private void AtualizarCotacaoDX()
+        private void AtualizarCotacaoMicrosoft()
         {
-            CarregarCotacoesFrame(txtLinkDX.Text,
-                lblDX_pts,
-                lblDX_var,
-                lblDX_Log,
-                txtFullPathVariacaoDX.Text,
-                txtFullPathCotacaoDX.Text);
+            try
+            {
+                _paginaMicrosoft = CarregarPagina(_paginaMicrosoft, _linkMicrosoft);
+
+                CarregarCotacoesFrame(_paginaMicrosoft,
+                    lblCotacaoMicrosoft,
+                    lblVariacaoMicrosoft,
+                    lblAtuMicrosoft,
+                    _fullPathVariacaoAmazon,
+                    _fullPathCotacaoMicrosoft);
+
+                CarregarList(_valoresPercentuaisMicrosoft, lblVariacaoMicrosoft.Text);
+
+                DesenharGraficoLinha(chrMicrosoft, _valoresPercentuaisMicrosoft);
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
-        private void AtualizarCotacaoPetroleoWTI()
+        private void AtualizarCotacaoAmazon()
         {
-            CarregarCotacoesFrame(txtLinkWTI.Text,
-                lblPetroleoWTI_Pts,
-                lblPetroleoWTI_Var,
-                lblPetroleoWTI_Log,
-                txtFullPathVariacaoWTI.Text,
-                txtFullPathCotacaoWTI.Text);
+            try
+            {
+                _paginaAmazon = CarregarPagina(_paginaAmazon, _linkAmazon);
+
+                CarregarCotacoesFrame(_paginaAmazon,
+                    lblCotacaoAmazon,
+                    lblVariacaoAmazon,
+                    lblAtuAmazon,
+                    _fullPathVariacaoAmazon,
+                    _fullPathCotacaoAmazon);
+
+                CarregarList(_valoresPercentuaisAmazon, lblVariacaoAmazon.Text);
+
+                DesenharGraficoLinha(chrAmazon, _valoresPercentuaisAmazon);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void AtualizarCotacaoT10()
+        {
+            try
+            {
+                _paginaT10 = CarregarPagina(_paginaT10, _linkT10);
+
+                CarregarCotacoesFrame(_paginaT10,
+                    lblCotacaoT10,
+                    lblVariacaoT10,
+                    lblAtuT10,
+                    _fullPathVariacaoT10,
+                    _fullPathCotacaoT10);
+
+                string valor = lblVariacaoT10.Text.Split('.').Last();
+
+                valor = valor.Substring(1, 2);
+
+                CarregarList(_valoresPercentuaisT10, valor);
+
+                DesenharGraficoLinha(chrT10, _valoresPercentuaisT10);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void AtualizarCotacaoVale()
+        {
+            try
+            {
+                _paginaVale = CarregarPagina(_paginaVale, _linkVale);
+
+                CarregarCotacoesFrame(_paginaVale,
+                    lblCotacaoVale,
+                    lblVariacaoVale,
+                    lblAtuVale,
+                    _fullPathVariacaoVale,
+                    _fullPathCotacaoVale);
+
+                CarregarList(_valoresPercentuaisVale, lblVariacaoVale.Text);
+
+                DesenharGraficoLinha(chrVale, _valoresPercentuaisVale);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void AtualizarCotacaoPetro()
+        {
+            try
+            {
+                _paginaPetro = CarregarPagina(_paginaPetro, _linkPetro);
+
+                CarregarCotacoesFrame(_paginaPetro,
+                    lblCotacaoPetro,
+                    lblVariacaoPetro,
+                    lblAtuPetro,
+                    _fullPathVariacaoPetro,
+                    _fullPathCotacaoPetro);
+
+                CarregarList(_valoresPercentuaisPetro, lblVariacaoPetro.Text);
+
+                DesenharGraficoLinha(chrPetro, _valoresPercentuaisPetro);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void AtualizarCotacaoItau()
+        {
+            try
+            {
+                _paginaItau = CarregarPagina(_paginaItau, _linkItau);
+
+                CarregarCotacoesFrame(_paginaItau,
+                    lblCotacaoItau,
+                    lblVariacaoItau,
+                    lblAtuItau,
+                    _fullPathVariacaoItau,
+                    _fullPathCotacaoItau);
+
+                CarregarList(_valoresPercentuaisItau, lblVariacaoItau.Text);
+
+                DesenharGraficoLinha(chrItau, _valoresPercentuaisItau);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private void AtualizarCotacaoEWZ()
+        {
+            try
+            {
+                _paginaEWZ = CarregarPagina(_paginaEWZ, _linkEWZ);
+
+                CarregarCotacoesFrame(_paginaEWZ,
+                    lblCotacaoEWZ,
+                    lblVariacaoEWZ,
+                    lblAtuEWZ,
+                    _fullPathVariacaoEWZ,
+                    _fullPathCotacaoEWZ);
+
+                CarregarList(_valoresPercentuaisEWZ, lblVariacaoEWZ.Text);
+
+                DesenharGraficoLinha(chrEWZ, _valoresPercentuaisEWZ);
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        private HtmlAgilityPack.HtmlDocument CarregarPagina(HtmlAgilityPack.HtmlDocument pagina, string link)
+        {
+            try
+            {
+                //if (pagina == null)
+                {
+                    var web = new HtmlWeb();
+                    pagina = web.Load(link);
+                }
+
+                return pagina;
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
+
+        private void CarregarList(List<double> lista, string variacao)
+        {
+            try
+            {
+                if (lista.Count == 0)
+                {
+                    lista.Add(0);
+                }
+
+                variacao = variacao.Replace("%", "").Replace(".", ",");
+
+                double.TryParse(variacao, out var cotacao);
+                lista.Add(cotacao);
+
+                if (lista.Count > 15)
+                {
+                    lista.Remove(lista.First());
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
 
         private void trmCotacoes_Tick(object sender, EventArgs e)
         {
-            Thread threadSP500FUT = new Thread(new ThreadStart(AtualizarCotacaoSP500));
-            threadSP500FUT.Start();
-                        
-            Thread threadDX = new Thread(new ThreadStart(AtualizarCotacaoDX));
-            threadDX.Start();
+            try
+            {
 
-            Thread threadPetroleoWTI = new Thread(new ThreadStart(AtualizarCotacaoPetroleoWTI));
-            threadPetroleoWTI.Start();
-            
-          }
+                if (_rodouThreadsNesteMinuto == false)
+                {
+
+                    Thread threadAppe = new Thread(new ThreadStart(AtualizarCotacaoApple));
+                    threadAppe.Start();
+
+                    Thread threadMicrosoft = new Thread(new ThreadStart(AtualizarCotacaoMicrosoft));
+                    threadMicrosoft.Start();
+
+                    Thread threadAmazon = new Thread(new ThreadStart(AtualizarCotacaoAmazon));
+                    threadAmazon.Start();
+
+                    Thread threadT10 = new Thread(new ThreadStart(AtualizarCotacaoT10));
+                    threadT10.Start();
+
+
+                    Thread threadVale = new Thread(new ThreadStart(AtualizarCotacaoVale));
+                    threadVale.Start();
+
+                    Thread threadPetro = new Thread(new ThreadStart(AtualizarCotacaoPetro));
+                    threadPetro.Start();
+
+                    Thread threadItau = new Thread(new ThreadStart(AtualizarCotacaoItau));
+                    threadItau.Start();
+
+                    Thread threadEWZ = new Thread(new ThreadStart(AtualizarCotacaoEWZ));
+                    threadEWZ.Start();
+
+                    _rodouThreadsNesteMinuto = true;
+                }
+
+                if (DateTime.Now.Second == 55)
+                {
+                    _rodouThreadsNesteMinuto = false;
+                }
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
 
 
         private void FrmAlertas_LocationChanged(object sender, EventArgs e)
@@ -459,12 +836,12 @@ namespace AlertasEconomicos
         {
 
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             var texto = "6,49	10,22	3,56	20,53%	7,42%	1,95";
 
-     
+
             foreach (char c in texto)
             {
                 MessageBox.Show(c + ": " + (int)c);
@@ -478,7 +855,7 @@ namespace AlertasEconomicos
 
         private void txtEnderecoStatusInvest_MouseClick(object sender, MouseEventArgs e)
         {
-            txtEnderecoStatusInvest.Text = "";
+            
         }
 
         private void lblHoraTokyo_Click(object sender, EventArgs e)
@@ -488,46 +865,52 @@ namespace AlertasEconomicos
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
+            FormatarGrafico(chrApple);
+            FormatarGrafico(chrMicrosoft);
+            FormatarGrafico(chrAmazon);
+            FormatarGrafico(chrT10);
+
+            FormatarGrafico(chrVale);
+            FormatarGrafico(chrPetro);
+            FormatarGrafico(chrItau);
+            FormatarGrafico(chrEWZ);
+
+            _paginaApple = null;
+            _paginaMicrosoft = null;
+            _paginaAmazon = null;
 
             List<Label> labels = new List<Label>();
-            labels.Add(lblDX_pts);
-            labels.Add(lblPetroleoWTI_Pts);
-            labels.Add(lblSP500Fut_pts);
+            labels.Add(lblCotacaoApple);
+            labels.Add(lblCotacaoMicrosoft);
+            labels.Add(lblCotacaoAmazon);
 
-            labels.Add(lblDX_var);
-            labels.Add(lblPetroleoWTI_Var);
-            labels.Add(lblSP500Fut_var);
+            labels.Add(lblVariacaoApple);
+            labels.Add(lblVariacaoMicrosoft);
+            labels.Add(lblVariacaoAmazon);
 
-            labels.Add(lblDX_Log);
-            labels.Add(lblPetroleoWTI_Log);
-            labels.Add(lblSP500Fut_log);
+            labels.Add(lblAtuApple);
+            labels.Add(lblAtuMicrosoft);
+            labels.Add(lblAtuAmazon);
 
             foreach (var label in labels)
             {
                 label.Text = "";
             }
 
-
             trmCotacoes_Tick(null, null);
 
             SalvarSettings();
         }
 
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-            if (this.Height == (int)TamanhoForm.Normal)
-                this.Height = (int)TamanhoForm.Configuracoes;
-            else if (this.Height == (int)TamanhoForm.Configuracoes)
-                this.Height = (int)TamanhoForm.Normal;
-            else
-                this.Height = (int)TamanhoForm.Configuracoes;
-        }
-
         private void btnStop_Click(object sender, EventArgs e)
         {
             btnStop.Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var form = new FrmCalendario();
+            form.Show();
         }
     }
 }
